@@ -1,0 +1,24 @@
+<template name="allPlayers">  
+	<h2>Player list</h2>
+		{{#if currentUser}}
+			<a href="{{pathFor 'playerSubmit'}}">New player</a>
+		{{/if}}
+
+	<div>    
+		{{#each allPlayers}}      
+			{{> player}}    
+		{{/each}}  
+
+	 
+	</div> 
+</template>
+
+<template name="onePlayerByAlias">  
+	<div>    
+	<!--{{#with findScarlett}}      
+			{{> player}}    
+	{{/with}}  -->
+	</div> 
+</template>
+
+	

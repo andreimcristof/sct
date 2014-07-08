@@ -1,0 +1,56 @@
+<template name="layout">
+	<div class="container">
+		
+		<header class="navbar navbar-fixed-top">
+
+			<div class="navbar-inner">
+				<div class="container">
+
+					<a class="brand" href="{{pathFor 'allPlayers'}}">SC2Talk</a>
+
+					{{#if currentUser}}
+						<div class="">
+							<ul class="nav">
+								<li>
+									{{> autoComplete }}		
+								</li>
+
+								
+								<li>
+									{{> topButtons }} 		
+								</li>
+								<li>
+									
+								</li>
+							</ul>
+
+							<!-- <ul class="nav pull-right">
+								<li>
+									
+								</li>
+							</ul> -->
+						</div>
+					{{/if}}
+					
+					<ul class="nav pull-right">
+					
+					{{#if currentUser}}
+						<li>
+							{{> notifier }} 
+						</li>
+					{{/if}}
+					
+					{{> loginButtons }} 			
+					</ul>
+				</div>
+			</div>
+		</header>
+
+
+		<div id="main" class="row-fluid">
+			{{> yield}}
+		</div>
+
+	</div>
+</template>
+

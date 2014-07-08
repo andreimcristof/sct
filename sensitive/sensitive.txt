@@ -1,0 +1,4 @@
+twitter api connect to login for testing purposes:
+
+API key	KJc3nMWvbpQh8BGyePWQaYWkN
+API secret	svHCXyCJ61v3C3ZpWgydlJJX9sQFHObquvLI1RAbqRdUd2vD1F
