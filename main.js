@@ -4,31 +4,43 @@ if (Meteor.isServer) {
 
     
 
-    //prefill players dummy data    
-    if(Players.find().count()>6)
-    {
-      Players.remove({});
-    }
-
+    //prefill  data    
+    Players.remove({});
     if (Players.find().count() === 0 ) {   
       Players.insert( { name : "Sam", alias: "kane", race: "Zerg" } );
       Players.insert( { name : "Sasha", alias: "Scarlett", race: "Zerg" } );
       Players.insert( { name : "Conan", alias: "Suppy", race: "Zerg" } );
     }
-    //end prefill players
+
+    
+
+    Races.remove({});
+    if (Races.find().count() === 0 ) { 
+      Races.insert( { name : "Terran"} );
+      Races.insert( { name : "Zerg"} );
+      Races.insert( { name : "Protoss"} );
+    }
+
+    Leagues.remove({});
+     if (Leagues.find().count() === 0 ) { 
+      Leagues.insert( { name : "Grandmaster"} );
+      Leagues.insert( { name : "Master"} );
+      Leagues.insert( { name : "Diamond"} );
+      Leagues.insert( { name : "Platinum"} );
+      Leagues.insert( { name : "Gold"} );
+      Leagues.insert( { name : "Silver"} );
+      Leagues.insert( { name : "Bronze"} );
+    }
+    //end prefill 
 
 
-    //publish players
-    //Meteor.publish("onePlayerByAlias", function(alias)     {
-    //  return Players.find({"alias":alias});
-    //});
 
     Meteor.publish("allPlayers", function () {
       return Players.find(); 
     });
 
 
-    //publish playpals
+
     Meteor.publish("onePlaypalBy", function(alias) {
       return Players.find({"alias":alias});
     });
@@ -43,6 +55,14 @@ if (Meteor.isServer) {
       return  Playpals.findOne({"submitter": this.userId}); 
     });
 
+
+  Meteor.publish("allRaces", function () {
+      return Races.find(); 
+    });
+
+  Meteor.publish("allLeagues", function () {
+      return Leagues.find(); 
+    });
 });
 }
 
@@ -55,5 +75,7 @@ if (Meteor.isClient) {
 
   Meteor.subscribe("allPlayers");
   Meteor.subscribe("allPlaypals");
+  Meteor.subscribe("allRaces");
+  Meteor.subscribe("allLeagues");
 }
 
