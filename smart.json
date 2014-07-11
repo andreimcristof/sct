@@ -3,7 +3,6 @@
     "iron-router": {},
     "spin": {},
     "accounts-ui-bootstrap-3": {},
-    "autocomplete": {},
-    "user-status": {}
+    "autocomplete": {}
   }
 }

@@ -2,7 +2,7 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
 
-    
+    //Playpals.remove({});
 
     //prefill  data    
     Players.remove({});
@@ -31,6 +31,15 @@ if (Meteor.isServer) {
       Leagues.insert( { name : "Silver"} );
       Leagues.insert( { name : "Bronze"} );
     }
+
+
+    Servers.remove({});
+    if (Servers.find().count() === 0 ) { 
+      Servers.insert( { name : "North America"} );
+      Servers.insert( { name : "Europe"} );
+      Servers.insert( { name : "Korea"} );
+      Servers.insert( { name : "South-East Asia"} );
+    }
     //end prefill 
 
 
@@ -41,19 +50,14 @@ if (Meteor.isServer) {
 
 
 
-    Meteor.publish("onePlaypalBy", function(alias) {
-      return Players.find({"alias":alias});
-    });
-
-
     Meteor.publish("allPlaypals", function () {
       return Playpals.find(); 
     });
 
 
-  Meteor.publish("ownPlaypal", function () {
+/*  Meteor.publish("ownPlaypal", function () {
       return  Playpals.findOne({"submitter": this.userId}); 
-    });
+    });*/
 
 
   Meteor.publish("allRaces", function () {
@@ -62,6 +66,10 @@ if (Meteor.isServer) {
 
   Meteor.publish("allLeagues", function () {
       return Leagues.find(); 
+    });
+
+  Meteor.publish("allServers", function () {
+      return Servers.find(); 
     });
 });
 }
@@ -77,5 +85,6 @@ if (Meteor.isClient) {
   Meteor.subscribe("allPlaypals");
   Meteor.subscribe("allRaces");
   Meteor.subscribe("allLeagues");
+  Meteor.subscribe("allServers");
 }
 

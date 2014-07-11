@@ -5,8 +5,7 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-3": {},
-      "autocomplete": {},
-      "user-status": {}
+      "autocomplete": {}
     },
     "packages": {
       "iron-router": {
@@ -29,11 +28,6 @@
         "tag": "v0.4.5",
         "commit": "48a706f0055939ac9e05dd619ad6d4df3dcc237d"
       },
-      "user-status": {
-        "git": "https://github.com/mizzao/meteor-user-status.git",
-        "tag": "v0.5.0",
-        "commit": "6a096fd9f3a916887c92cb778040ce2f8a9cc554"
-      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
@@ -43,11 +37,6 @@
         "git": "https://github.com/StockBase/meteor-caret-position.git",
         "tag": "v2.1.0-3",
         "commit": "6028cf980f62cbf72cb2ea527091a3a31f87b8a7"
-      },
-      "timesync": {
-        "git": "https://github.com/mizzao/meteor-timesync.git",
-        "tag": "v0.2.0",
-        "commit": "55f1daf261996dfbd726253688cfe7a2cc169d9b"
       }
     }
   }

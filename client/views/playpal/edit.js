@@ -6,17 +6,18 @@ Template.playpalEdit.events({
 
 		var playpalProperties = 
 		{
-			server: $(e.target).find('[name=server]').val(),
+			server: $('#servers').val(),
 			bnetid: $(e.target).find('[name=bnetid]').val(),
-			race: $(e.target).find('[name=race]').val(),
+			race: $('#races').val(),
 			profileurl: $(e.target).find('[name=profileurl]').val(),
-			league: $(e.target).find('[name=league]').val(),
+			league: $('#leagues').val(),
 			comment: $(e.target).find('[name=comment]').val(),
-			submitted: $(e.target).find('[name=submitted]').val()
+			submitted : new Date().getTime()
 		}
 
 		Playpals.update(currentPlaypalId,{ $set:playpalProperties}, function(error){
 			if(error){
+				console.log(error);
 				//log update error 
 			}
 			else
@@ -37,3 +38,15 @@ Template.playpalEdit.events({
 		}
 	}
 });
+
+/*Template.playpalEdit.comment = function()
+{
+	Meteor.defer (function(){
+		$.find('[name=comment]').val("cccc");
+		
+	})
+}*/
+
+
+
+

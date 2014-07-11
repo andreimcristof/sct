@@ -17,27 +17,58 @@ Playpals = new Meteor.Collection("playpals");
 
 Meteor.methods({
 	postPlaypal:function(playpalAttributes){
-		var user = Meteor.user(),
-		playpalWithSameId = Playpals.findOne({alias: playpalAttributes.alias});
+
+		var user = Meteor.user();
 
 		//ensure user is logged in to post
 		if(!user)
-			throw new Meteor.Error(401, "You need to login to do this action");
+			throwVisualErrorHint("You need to login to do this action");
 
-		//ensure playpal has fields completed
-		if(!playpalAttributes.race)
-			throw new Meteor.Error(402, "Please give the playpal a race");
 
-		//check possible duplicates
-		if(playpalAttributes.submitter && playpalWithSameId)
-			throw new Meteor.Error(302, "This practice partner already exists", playpalWithSameId._id);
+		//fields 
+		if(!playpalAttributes.bnetid)
+			throwVisualErrorHint("Please enter a Battle.net ID");
 
-		var playpal = _.extend(_.pick(playpalAttributes, "alias", "name", "race"), {
+		if(!playpalAttributes.profileurl)
+			throwVisualErrorHint("Please enter a Battle.net URL");
+
+		if(playpalAttributes.profileurl && !IsProperBNetURL(playpalAttributes.profileurl))
+			throwVisualErrorHint("The URL you entered is not a Battle.net URL");
+
+		if(!playpalAttributes.comment)
+			throwVisualErrorHint("Please enter a short description in the comment field.");
+
+		var playpal = _.extend(_.pick(playpalAttributes, "server", "bnetid", "race", "profileurl", "league", "comment", "submitted"), {
 			userId : user._id,
-			submitted : new Date().getTime()
+			submitter: this.userId
 		});
 
 		var playpalId = Playpals.insert(playpal);
+		console.log(playpal);
 		return playpalId;
 	}
 });
+
+function IsProperBNetURL(value) {
+
+	if(	!URLstartsWithBNet(value, "http://eu.battle.net") && 
+		!URLstartsWithBNet(value, "http://kr.battle.net") && 
+		!URLstartsWithBNet(value, "http://tw.battle.net") && 
+		!URLstartsWithBNet(value, "http://sea.battle.net") && 
+		!URLstartsWithBNet(value, "http://us.battle.net") 
+		)
+		return false;
+
+    return /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/i.test(value);
+ }
+
+if (typeof String.prototype.startsWith != 'function') {
+  String.prototype.startsWith = function (str){
+    return this.indexOf(str) == 0;
+  };
+}
+
+function URLstartsWithBNet(value, properURL)
+{
+	return value.startsWith(properURL);
+}

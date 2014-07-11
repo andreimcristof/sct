@@ -9,3 +9,9 @@ Template.allLeagues.helpers({
 			return Leagues.find();
 		}
 });
+
+Template.allServers.helpers({  
+		allServers: function() {    
+			return Servers.find();
+		}
+});

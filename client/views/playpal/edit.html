@@ -2,11 +2,10 @@
 	<form class="main">
 
 		<div class="control-group">
-			<label class="control-label" for="server">Server</label>
-			<div class="controls">
-				<input name="server" type="text" value="{{server}}" placeholder="Server"/>
-			</div>
+			<label class="control-label">Server</label>
+				{{> allServers}}
 		</div>
+
 
 		<div class="control-group">
 			<label class="control-label" for="bnetid">Battle.net ID</label>
@@ -15,18 +14,12 @@
 			</div>
 		</div>
 
-		<!--<div class="control-group">
-			<label class="control-label" for="race">Race</label>
-			<div class="controls">
-				<input name="race" type="text" value="{{race}}" placeholder="Race"/>
-			</div>
-		</div>-->
+
 		<div class="control-group">
-			<label class="control-label" for="profileurl">Profile URL</label>
-			
+			<label class="control-label">Race</label>
 				{{> allRaces}}
-			
 		</div>
+
 
 		<div class="control-group">
 			<label class="control-label" for="profileurl">Profile URL</label>
@@ -35,17 +28,17 @@
 			</div>
 		</div>
 
+
 		<div class="control-group">
-			<label class="control-label" for="league">League</label>
-			<div class="controls">
-				<input name="league" type="text" value="{{league}}" placeholder="League"/>
-			</div>
+			<label class="control-label">League</label>
+				{{> allLeagues}}
 		</div>
+
 
 		<div class="control-group">
 			<label class="control-label" for="comment">Comment</label>
 			<div class="controls">
-				<input name="comment" type="text" value="{{comment}}" placeholder="Comment"/>
+				<textarea name="comment" placeholder="Comment">{{comment}}</textarea>
 			</div>
 		</div>
 
@@ -62,13 +55,13 @@
 
 		<div class="control-group">
 			<div class="controls">
-				<input type="submit" value="Submit" class="btn btn-primary submit" />
+				<input type="submit" value="Modify entry" class="btn btn-primary submit" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<div class="controls">
-				<a class="btn btn-danger delete" href="#">Delete Play pal</a>
+				<a class="btn btn-danger delete" href="#">Delete your entry</a>
 			</div>
 		</div>
 
