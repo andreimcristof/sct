@@ -2,6 +2,15 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
 
+
+    Playpals.allow({
+    update: function (userId, playpal) {
+      if(playpal.userId == Meteor.userId())
+        return true;
+      else
+        return false;
+      }
+    });
     //Playpals.remove({});
 
     //prefill  data    

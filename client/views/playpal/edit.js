@@ -20,32 +20,35 @@ Template.playpalEdit.events({
 				console.log(error);
 				//log update error 
 			}
-			else
-			{
-				Router.go('playpal', {_id: currentPlaypalId});
+			else{
+				Router.go('allPlaypals');
 			}
 		});
 	},
 
 	'click .delete': function(e){
 		e.preventDefault();
-
-		if(confirm("Delete this practice partner?")){
-			var currentPlaypalId = this._id;
-			Playpals.remove(currentPlaypalId);
-
-			Router.go('allPlaypals');
+			//disabled for now
 		}
-	}
-});
+	});
 
-/*Template.playpalEdit.comment = function()
+/*
+Template.playpalEdit.comment = function()
 {
 	Meteor.defer (function(){
-		$.find('[name=comment]').val("cccc");
+		$.find('[name=comment]').text("cccc");
 		
 	})
 }*/
+
+Template.playpalEdit.rendered = function()
+{
+	var ownPP = Template.allPlaypals.ownPlaypal();
+		$('#races').val(ownPP.race);
+		$('#servers').val(ownPP.server);
+		$('#leagues').val(ownPP.league);
+}
+
 
 
 
