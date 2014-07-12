@@ -1,0 +1,15 @@
+<template name="searchFiltersPlaypal">  
+	<div >    
+		{{#each searchFiltersPlaypal}}      
+			{{> playpalFilter}}    
+		{{/each}}  
+	</div> 
+</template>
+
+<template name="playpalFilter">  
+	
+	<div>
+	<p>	{{objectType}}  </p>
+		<p>	{{name}}  </p>
+	</div>
+</template>

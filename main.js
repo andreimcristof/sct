@@ -22,32 +22,31 @@ if (Meteor.isServer) {
     }
 
     
-
     Races.remove({});
     if (Races.find().count() === 0 ) { 
-      Races.insert( { name : "Terran"} );
-      Races.insert( { name : "Zerg"} );
-      Races.insert( { name : "Protoss"} );
+      Races.insert( { name : "Terran", objectType :"race"} );
+      Races.insert( { name : "Zerg", objectType :"race"} );
+      Races.insert( { name : "Protoss", objectType :"race"} );
     }
 
     Leagues.remove({});
      if (Leagues.find().count() === 0 ) { 
-      Leagues.insert( { name : "Grandmaster"} );
-      Leagues.insert( { name : "Master"} );
-      Leagues.insert( { name : "Diamond"} );
-      Leagues.insert( { name : "Platinum"} );
-      Leagues.insert( { name : "Gold"} );
-      Leagues.insert( { name : "Silver"} );
-      Leagues.insert( { name : "Bronze"} );
+      Leagues.insert( { name : "Grandmaster", objectType :"league"} );
+      Leagues.insert( { name : "Master", objectType :"league"} );
+      Leagues.insert( { name : "Diamond", objectType :"league"} );
+      Leagues.insert( { name : "Platinum", objectType :"league"} );
+      Leagues.insert( { name : "Gold", objectType :"league"} );
+      Leagues.insert( { name : "Silver", objectType :"league"} );
+      Leagues.insert( { name : "Bronze", objectType :"league"} );
     }
 
 
     Servers.remove({});
     if (Servers.find().count() === 0 ) { 
-      Servers.insert( { name : "North America"} );
-      Servers.insert( { name : "Europe"} );
-      Servers.insert( { name : "Korea"} );
-      Servers.insert( { name : "South-East Asia"} );
+      Servers.insert( { name : "North America", objectType :"server"} );
+      Servers.insert( { name : "Europe", objectType :"server"} );
+      Servers.insert( { name : "Korea", objectType :"server"} );
+      Servers.insert( { name : "South-East Asia", objectType :"server"} );
     }
     //end prefill 
 
