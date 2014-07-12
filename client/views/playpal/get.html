@@ -10,10 +10,11 @@
 	
 	{{#if currentUser}}
 		<div class="alert alert-info">
+		<h3>Your profile</h3>
 			{{#with ownPlaypal}} 
 				{{> playpal}}    
 				
-					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-lg">Modify your submitted profile</a>
+					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-small">Modify your profile</a>
 				
 			{{/with}} 
 		</div>

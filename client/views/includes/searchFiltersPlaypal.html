@@ -1,15 +1,22 @@
 <template name="searchFiltersPlaypal">  
+<h3>Filters chosen</h3>
 	<div >    
-		{{#each searchFiltersPlaypal}}      
-			{{> playpalFilter}}    
-		{{/each}}  
+		{{#if isEmpty}}
+			None - show all
+		{{/if}}
+		
+		{{#unless isEmpty}}
+
+			<strong> By race: </strong> {{playpalRaceFilter}}
+			<br />
+			<strong> From servers: </strong> {{playpalServerFilter}}
+			<br />
+			<strong> Only leagues: </strong> {{playpalLeagueFilter}}
+			<br />
+			<br />
+			<input id="removeFilters" type="button" class="btn btn-small" value="Remove all filters" />
+		{{/unless}}		
 	</div> 
 </template>
 
-<template name="playpalFilter">  
-	
-	<div>
-	<p>	{{objectType}}  </p>
-		<p>	{{name}}  </p>
-	</div>
-</template>
+
