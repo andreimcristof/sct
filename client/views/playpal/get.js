@@ -22,3 +22,10 @@ Template.allPlaypals.helpers({
 		}
 });
 
+
+
+Template.allPlaypals.rendered = function()
+{
+	var dataAllPlaypals  = JSON.stringify(Template.allPlaypals.allPlaypals().fetch());
+	RenderPlaypalD3(dataAllPlaypals);
+}
