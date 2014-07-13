@@ -8,3 +8,11 @@ textarea {
     height:150px;
     width:400px;
 }
+
+.nodePlaypal {
+  opacity: 0.5;
+}
+
+.nodePlaypal:hover {
+  opacity: 1;
+}

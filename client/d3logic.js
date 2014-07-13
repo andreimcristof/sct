@@ -75,11 +75,11 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	        .attr('class', 'link')
 	        .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
 
-	    node = svg.selectAll('.node')
+	    node = svg.selectAll('.nodePlaypal')
 	        .data( data )
 	      .enter().append('g')
 	        .attr('title', server)
-	        .attr('class', 'node')
+	        .attr('class', 'nodePlaypal')
 	        .call( force.drag );
 
 	    node.append('circle')
