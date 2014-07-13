@@ -17,6 +17,11 @@
 					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-small">Modify your profile</a>
 				
 			{{/with}} 
+
+			{{#unless ownPlaypal}}
+			<p>People don't know about you yet; click below to add your profile to the list of available players.</p>
+				<a href="{{pathFor 'playpalSubmit'}}" class="btn btn-lg">Add yourself to list</a>
+			{{/unless}}	
 		</div>
 	
 			<!-- put me in a nice panel -->
@@ -54,15 +59,13 @@
 			</div>
 		
 
-		{{#unless ownPlaypal}}
-				<a href="{{pathFor 'playpalSubmit'}}" class="btn btn-lg">Add yourself to list</a>
-		{{/unless}}		
+			
 
-		<div>    
+		<!--<div>    
 			{{#each allPlaypals}}      
 				{{> playpal}}    
 			{{/each}}  
-		</div> 
+		</div> -->
 
 		
 	

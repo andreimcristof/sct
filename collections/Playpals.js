@@ -13,7 +13,12 @@ Playpals:
 */
 
 
+
 Playpals = new Meteor.Collection("playpals");
+
+
+
+
 
 Meteor.methods({
 	postPlaypal:function(playpalAttributes){

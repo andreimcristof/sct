@@ -2,6 +2,14 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
 
+    Playpals.remove({});
+    InsertMockPlaypals();
+
+    Players.remove({});
+    InsertMockPlayers();
+    
+
+    
 
     Playpals.allow({
     update: function (userId, playpal) {
@@ -11,17 +19,9 @@ if (Meteor.isServer) {
         return false;
       }
     });
-    //Playpals.remove({});
+    
 
     //prefill  data    
-    Players.remove({});
-    if (Players.find().count() === 0 ) {   
-      Players.insert( { name : "Sam", alias: "kane", race: "Zerg" } );
-      Players.insert( { name : "Sasha", alias: "Scarlett", race: "Zerg" } );
-      Players.insert( { name : "Conan", alias: "Suppy", race: "Zerg" } );
-    }
-
-    
     Races.remove({});
     if (Races.find().count() === 0 ) { 
       Races.insert( { name : "Terran", objectType :"race"} );

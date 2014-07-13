@@ -25,7 +25,7 @@ Template.searchFiltersPlaypal.playpalRaceFilter = function(){
 	
 		var racesChosen = SearchFiltersPlaypal.find({objectType : 'race'}).fetch();
 		if(racesChosen.length == 0)
-			return "all races";
+			return "all";
 		else
 		{
 			var races = [];
@@ -43,7 +43,7 @@ Template.searchFiltersPlaypal.playpalServerFilter = function(){
 	
 		var serversChosen = SearchFiltersPlaypal.find({objectType : 'server'}).fetch();
 		if(serversChosen.length == 0)
-			return "all servers";
+			return "all";
 		else
 		{
 			var servers = [];
@@ -60,7 +60,7 @@ Template.searchFiltersPlaypal.playpalLeagueFilter = function(){
 	
 		var leaguesChosen = SearchFiltersPlaypal.find({objectType : 'league'}).fetch();
 		if(leaguesChosen.length == 0)
-			return "all leagues";
+			return "all";
 		else
 		{
 			var leagues = [];
