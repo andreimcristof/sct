@@ -36,6 +36,8 @@ Template.allPlaypals.rendered = function()
 
 		var dataAllPlaypals  = JSON.stringify(Template.allPlaypals.allPlaypals(filter).fetch());	
 
+		//clear container
+		$('#resultsVisualizer').empty();
 		RenderPlaypalD3(dataAllPlaypals);
 	})	
 }
