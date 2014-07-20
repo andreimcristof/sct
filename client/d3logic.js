@@ -1,3 +1,4 @@
+
 RenderPlaypalD3 = function(dataAllPlaypals) {
 
 	function server(d) { return d.server; }
@@ -78,9 +79,11 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	    node = svg.selectAll('.nodePlaypal')
 	        .data( data )
 	      .enter().append('g')
-	        .attr('title', server)
+	        .attr('server', server)
 	        .attr('class', 'nodePlaypal')
-	        .call( force.drag );
+	        .call( force.drag )
+	        //.on("mouseover", function(d, i){alert(i);})
+	        .on("mouseover", playpalNodeHoverCallback)
 
 	    node.append('circle')
 	        .attr('r', 30)
@@ -93,7 +96,13 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 
 	    force
 	        .nodes( data )
-	       // .links( data.links )
+	       	// .links( data.links )
 	        .start();
+
+	function playpalNodeHoverCallback(data,index)
+	{ 
 		
+		//console.log(d3.select(this)[0]);
+	}		
 }
+

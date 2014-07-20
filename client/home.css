@@ -11,6 +11,7 @@ textarea {
 
 .nodePlaypal {
   opacity: 0.5;
+  cursor:pointer; cursor:hand;
 }
 
 .nodePlaypal:hover {
