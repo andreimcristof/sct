@@ -2,26 +2,13 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
 
+    //prefill data mocks    
     Playpals.remove({});
     InsertMockPlaypals();
 
     Players.remove({});
     InsertMockPlayers();
-    
 
-    
-
-    Playpals.allow({
-    update: function (userId, playpal) {
-      if(playpal.userId == Meteor.userId())
-        return true;
-      else
-        return false;
-      }
-    });
-    
-
-    //prefill  data    
     Races.remove({});
     if (Races.find().count() === 0 ) { 
       Races.insert( { name : "Terran", objectType :"race"} );
@@ -50,6 +37,17 @@ if (Meteor.isServer) {
     }
     //end prefill 
 
+
+    
+    //rights
+    Playpals.allow({
+    update: function (userId, playpal) {
+      if(playpal.userId == Meteor.userId())
+        return true;
+      else
+        return false;
+      }
+    });
 
 
     Meteor.publish("allPlayers", function () {
