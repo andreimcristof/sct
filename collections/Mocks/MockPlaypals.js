@@ -1,6 +1,6 @@
 InsertMockPlaypals = function()
 {
-	
+	Playpals.remove({});
 	
 	Playpals.insert({
 	"bnetid":" ", 

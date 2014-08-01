@@ -49,7 +49,7 @@ Meteor.methods({
 		});
 
 		var playpalId = Playpals.insert(playpal);
-		console.log(playpal);
+
 		return playpalId;
 	}
 });

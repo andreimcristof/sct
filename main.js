@@ -2,13 +2,13 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
 
-    //prefill data mocks    
-    Playpals.remove({});
+    //mocks
+    InsertMockStrategies();
     InsertMockPlaypals();
+    //InsertMockPlayers();
+    //end mocks
 
-    Players.remove({});
-    InsertMockPlayers();
-
+    //prefill constants
     Races.remove({});
     if (Races.find().count() === 0 ) { 
       Races.insert( { name : "Terran", objectType :"race"} );
@@ -61,7 +61,7 @@ if (Meteor.isServer) {
     });
 
 
-/*  Meteor.publish("ownPlaypal", function () {
+  /*  Meteor.publish("ownPlaypal", function () {
       return  Playpals.findOne({"submitter": this.userId}); 
     });*/
 
@@ -87,10 +87,12 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
   Meteor.subscribe("ownPlaypal");
 
-  Meteor.subscribe("allPlayers");
+  //Meteor.subscribe("allPlayers");
   Meteor.subscribe("allPlaypals");
   Meteor.subscribe("allRaces");
   Meteor.subscribe("allLeagues");
   Meteor.subscribe("allServers");
+  Meteor.subscribe("allStrategies");
+
 }
 
