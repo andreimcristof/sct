@@ -61,18 +61,31 @@ function RerenderPlaypalGraphicAfterFilterChange()
 	RenderPlaypalD3(filterData);
 }
 
-
-
 var InitializeTooltipForNodes  = function()
 {
-	$('svg g.nodePlaypal').qtip({
-		content:
-		{
-			text: "aaa"
-		},
-		style: {height: 100, width: 175, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
-		show: { delay: 0 }
-	});	
+	$('#resultsVisualizer g.nodePlaypal').each(function(){
+		$(this).qtip({
+			content:
+			{
+				text: "<div> \
+					<h5>BattleNet ID: " + $(this).attr("bnetid") + "</h5> \
+					<strong><a href='" + $(this).attr("profileurl") + "' target='_new'>Profile Link</a></strong> \
+					<br /><br /> \
+					Server: <strong>" + $(this).attr("server") + "</strong> \
+					<br /><br /> \
+					League: <strong>" + $(this).attr("league") + "</strong> \
+					<br /><br /> \
+					Race: <strong>" + $(this).attr("race") + "</strong> \
+					<br /><br /> \
+					</div>" 
+			},
+			style: {height: 140, width: 200, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
+			show: { delay: 0 },
+			hide: { delay: 200, fixed : true }
+		});
+	});
+
+	
 }
 
 function GetCumulatedFilterFromUserSelection()
