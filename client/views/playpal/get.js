@@ -1,7 +1,6 @@
-//this is a manager. it serves data to the template. 
 Template.allPlaypals.helpers({  
 		allPlaypals: function(filter) {    
-			return Playpals.find(filter, {sort: {Submitted: -1 }  });
+			return Playpals.find(filter, {sort: {submitted: -1 }  });
 		},
 
 		ownPlaypal: function() 	{    
@@ -26,33 +25,54 @@ Template.allPlaypals.helpers({
 
 Template.allPlaypals.rendered = function()
 {
-	//mock SearchFiltersPlaypal
-	//SearchFiltersPlaypal.insert({objectType: "league", name:"Diamond"});
-	//SearchFiltersPlaypal.insert({objectType: "race", name:"Protoss"});
-	//SearchFiltersPlaypal.insert({objectType: "server", name:"North America"});
+	RerenderPlaypalGraphicAfterFilterChange();
+	InitializeTooltipForNodes();
+}
 
-	Deps.autorun(function(){
+Meteor.autosubscribe(function()
+{
+	SearchFiltersPlaypal.find().observe({
+		added: function(item)
+		{
+			RerenderPlaypalGraphicAfterFilterChange();
+			InitializeTooltipForNodes();
+		},
+
+		removed: function(item)
+		{
+			RerenderPlaypalGraphicAfterFilterChange();
+			InitializeTooltipForNodes();
+		},
+	})
+})
+
+function RerenderPlaypalGraphicAfterFilterChange()
+{
+	var GetSearchFilterPlaypal = function()
+	{
 		var filter = GetCumulatedFilterFromUserSelection();
+		var	dataAllPlaypals  = JSON.stringify(Template.allPlaypals.allPlaypals(filter).fetch());
+		return dataAllPlaypals;	
+	}
 
-		var dataAllPlaypals  = JSON.stringify(Template.allPlaypals.allPlaypals(filter).fetch());	
+	var filterData = GetSearchFilterPlaypal();
+	
+	$('#resultsVisualizer').empty();
+	RenderPlaypalD3(filterData);
+}
 
-		//clear container
-		$('#resultsVisualizer').empty();
-		RenderPlaypalD3(dataAllPlaypals);
-<<<<<<< Updated upstream
-      });	
-=======
 
-		$('svg g.nodePlaypal').qtip({
-			content:
-			{
-				text: "this.attr('race')"
-			},
-			style: {height: 100, width: 175, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
-			show: { delay: 0 }
-		});
-	})	
->>>>>>> Stashed changes
+
+var InitializeTooltipForNodes  = function()
+{
+	$('svg g.nodePlaypal').qtip({
+		content:
+		{
+			text: "aaa"
+		},
+		style: {height: 100, width: 175, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
+		show: { delay: 0 }
+	});	
 }
 
 function GetCumulatedFilterFromUserSelection()
@@ -105,3 +125,4 @@ function BuildFilter(templateResult, prop)
 	}
 }
 
+4
