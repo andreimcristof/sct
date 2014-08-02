@@ -3,6 +3,9 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 
 	function server(d) { return d.server; }
 	function race(d) { return d.race; }
+	function league(d) { return d.league; }
+	function bnetid(d) { return d.bnetid; }
+	function profileurl(d) { return d.profileurl; }
 
 	var color = d3.scale.category10();
 	function colorByRace(d) { return color(race(d)); }
@@ -46,11 +49,6 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	    node.attr('transform', function(d) { return 'translate('+d.x+','+d.y+')'; })
 	        .attr('clip-path', function(d) { return 'url(#clip-'+d.index+')'; });
 
-	   /*link.attr('x1', function(d) { return d.source.x; })
-	        .attr('y1', function(d) { return d.source.y; })
-	        .attr('x2', function(d) { return d.target.x; })
-	        .attr('y2', function(d) { return d.target.y; });*/
-
 	    var clip = svg.selectAll('.clip')
 	        .data( recenterVoronoi(node.data()), function(d) { return d.point.index; } );
 
@@ -70,19 +68,16 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	        d.id = i;
 	    });
 
-/*	    link = svg.selectAll('.link')
-	        .data( data.links )
-	      .enter().append('line')
-	        .attr('class', 'link')
-	        .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
-
 	    node = svg.selectAll('.nodePlaypal')
 	        .data( data )
-	      .enter().append('g')
-	        .attr('server', server)
+	      	.enter().append('g')
 	        .attr('class', 'nodePlaypal')
+	        .attr('server', server)
+	        .attr('bnetid', bnetid)
+	        .attr('league', league)
+	        .attr('race', race)
+	        .attr('profileurl', profileurl)
 	        .call( force.drag )
-	        //.on("mouseover", function(d, i){alert(i);})
 	        .on("mouseover", playpalNodeHoverCallback)
 
 	    node.append('circle')

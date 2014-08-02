@@ -39,7 +39,20 @@ Template.allPlaypals.rendered = function()
 		//clear container
 		$('#resultsVisualizer').empty();
 		RenderPlaypalD3(dataAllPlaypals);
+<<<<<<< Updated upstream
       });	
+=======
+
+		$('svg g.nodePlaypal').qtip({
+			content:
+			{
+				text: "this.attr('race')"
+			},
+			style: {height: 100, width: 175, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
+			show: { delay: 0 }
+		});
+	})	
+>>>>>>> Stashed changes
 }
 
 function GetCumulatedFilterFromUserSelection()

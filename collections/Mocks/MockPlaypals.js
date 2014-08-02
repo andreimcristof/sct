@@ -3,7 +3,7 @@ InsertMockPlaypals = function()
 	
 	
 	Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.374", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -15,7 +15,7 @@ InsertMockPlaypals = function()
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.375", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -28,7 +28,7 @@ Playpals.insert({
 
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.376", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -40,7 +40,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.377", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -52,7 +52,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.378", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -64,7 +64,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.379", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -76,7 +76,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.380", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -88,7 +88,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.381", 
 	"comment" : " ", 
 	"league" : "Master",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -100,7 +100,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.382", 
 	"comment" : " ", 
 	"league" : "Diamond",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -112,7 +112,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.383", 
 	"comment" : " ", 
 	"league" : "Silver",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -124,7 +124,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.384", 
 	"comment" : " ", 
 	"league" : "Silver",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -137,7 +137,7 @@ Playpals.insert({
 
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.385", 
 	"comment" : " ", 
 	"league" : "Silver",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
@@ -149,7 +149,7 @@ Playpals.insert({
 });
 
 Playpals.insert({
-	"bnetid":" ", 
+	"bnetid":"Andrei.386", 
 	"comment" : " ", 
 	"league" : "Bronze",
 	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
