@@ -39,26 +39,7 @@ Template.allPlaypals.rendered = function()
 		//clear container
 		$('#resultsVisualizer').empty();
 		RenderPlaypalD3(dataAllPlaypals);
-
-		$('svg g.nodePlaypal').tipsy({ 
-        gravity: 'n', 
-        html: true, 
-        title: function() {
-        	var d = this.__data__;
-          	return  NodeToHtmlTooltip(d); 
-        }
-      });
-	})	
-
-	var NodeToHtmlTooltip = function(data)
-	{
-		var server = data.server, race = data.race;
-
-		return ' \
-          		<p>Server: <span style="color:' + data.server + '">' + server + '</span></p> \
-          		<p>Race: <span style="color:' + race + '">' + race + '</span></p>	\
-          		'; 
-	}
+      });	
 }
 
 function GetCumulatedFilterFromUserSelection()

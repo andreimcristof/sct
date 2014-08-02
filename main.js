@@ -3,9 +3,16 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
 
     //mocks
-    InsertMockStrategies();
+    
+    //Strategies.remove({});
+    //InsertMockStrategies();
+    
+    Playpals.remove({});
     InsertMockPlaypals();
+
+    //Players.remove({});
     //InsertMockPlayers();
+    
     //end mocks
 
     //prefill constants

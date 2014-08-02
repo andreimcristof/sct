@@ -1,9 +1,7 @@
 
 
 InsertMockPlayers = function()
-{
-	Players.remove({});
-	
+{	
     if (Players.find().count() === 0 ) {   
       Players.insert( { name : "Sam", alias: "kane", race: "Zerg" } );
       Players.insert( { name : "Sasha", alias: "Scarlett", race: "Zerg" } );

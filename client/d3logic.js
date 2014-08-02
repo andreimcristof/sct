@@ -25,7 +25,7 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	function recenterVoronoi(nodes) {
 	    var shapes = [];
 	    voronoi(nodes).forEach(function(d) {
-	        if ( !d.length ) return;
+	        if ( !d || !d.length ) return;
 	        var n = [];
 	        d.forEach(function(c){
 	            n.push([ c[0] - d.point.x, c[1] - d.point.y ]);

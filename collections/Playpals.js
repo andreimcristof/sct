@@ -37,8 +37,8 @@ Meteor.methods({
 		if(!playpalAttributes.profileurl)
 			throwVisualErrorHint("Please enter a Battle.net URL");
 
-		if(playpalAttributes.profileurl && !IsProperBNetURL(playpalAttributes.profileurl))
-			throwVisualErrorHint("The URL you entered is not a Battle.net URL");
+		//if(playpalAttributes.profileurl && !IsProperBNetURL(playpalAttributes.profileurl))
+		//	throwVisualErrorHint("The URL you entered is not a Battle.net URL");
 
 		if(!playpalAttributes.comment)
 			throwVisualErrorHint("Please enter a short description in the comment field.");

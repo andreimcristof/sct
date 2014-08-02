@@ -1,6 +1,5 @@
 InsertMockStrategies = function()
 {
-	Strategies.remove({});
 
     if (Strategies.find().count() === 0 ) {   
       
