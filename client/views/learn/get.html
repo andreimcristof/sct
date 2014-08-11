@@ -1,0 +1,20 @@
+<template name="allStrategies">
+
+	{{#each allStrategies}}      
+		{{> strategy}}
+	{{/each}}
+
+</template>
+
+<template name="strategy">
+		<div>
+	
+		<p>Name: {{name}}</p>
+		<p>Race: {{race}}</p>
+		<p>Wiki link: {{wikilink}}</p>
+		<p>video link: <a href="{{videolink}}">Click for details</a></p>
+		
+	</div>
+	<br/>
+
+</template>

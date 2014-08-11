@@ -100,4 +100,3 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 		//console.log(d3.select(this)[0]);
 	}		
 }
-

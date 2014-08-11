@@ -28,18 +28,9 @@ Template.playpalEdit.events({
 
 	'click .delete': function(e){
 		e.preventDefault();
-			//disabled for now
+			//disabled delete playpal button for now
 		}
 	});
-
-/*
-Template.playpalEdit.comment = function()
-{
-	Meteor.defer (function(){
-		$.find('[name=comment]').text("cccc");
-		
-	})
-}*/
 
 Template.playpalEdit.rendered = function()
 {

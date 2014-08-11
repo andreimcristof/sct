@@ -4,10 +4,8 @@
 
 name
 race
-description
 wikiLink
 videoLink
-submitted
 
 */
 
