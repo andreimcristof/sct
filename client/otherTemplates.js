@@ -18,8 +18,8 @@ Template.allServers.helpers({
 
 
 
-Template.checkboxListItem.events({  
-		'click .checkboxListItem': function(event) {    
+Template.checkboxListItemPlaypal.events({  
+		'click .checkboxListItemPlaypal': function(event) {    
 			var clickedObject = $(this);
 
 			var name = clickedObject.attr('name');
@@ -34,3 +34,20 @@ Template.checkboxListItem.events({
 		
 		}
 });
+
+
+Template.checkboxListItemLearn.events({
+	'click .checkboxListItemLearn': function(event) {    
+			var clickedObject = $(this);
+
+			var name = clickedObject.attr('name');
+			var type = clickedObject.attr('objectType');
+			var isChecked = event.target.checked;
+
+			var filterObject = { "objectType" :  type, "name" : name }
+			if(isChecked)
+				insertSearchFilterLearn(filterObject);
+			else
+				removeSearchFilterLearn(filterObject);
+		}
+})

@@ -1,0 +1,16 @@
+<template name="searchFiltersLearn">  
+<h3>Filters chosen</h3>
+	<div >    
+		{{#if isEmpty}}
+			None - show all
+		{{/if}}
+		
+		{{#unless isEmpty}}
+			<strong> By race: </strong> {{learnRaceFilter}}
+			<br />
+			
+			<br />
+			<input id="removeFilters" type="button" class="btn btn-small" value="Remove all filters" />
+		{{/unless}}		
+	</div> 
+</template>

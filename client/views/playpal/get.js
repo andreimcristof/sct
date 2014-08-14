@@ -90,17 +90,16 @@ var InitializeTooltipForNodes  = function()
 
 function GetCumulatedFilterFromUserSelection()
 {
-	var serverFilter = BuildFilter(Template.searchFiltersPlaypal.playpalServerFilter(), "server");
-
-	var leagueFilter = BuildFilter(Template.searchFiltersPlaypal.playpalLeagueFilter(), "league");
-	var raceFilter = BuildFilter(Template.searchFiltersPlaypal.playpalRaceFilter(), "race");
+	var serverFilter = BuildFilterPlaypal(Template.searchFiltersPlaypal.playpalServerFilter(), "server");
+	var leagueFilter = BuildFilterPlaypal(Template.searchFiltersPlaypal.playpalLeagueFilter(), "league");
+	var raceFilter = BuildFilterPlaypal(Template.searchFiltersPlaypal.playpalRaceFilter(), "race");
 
 	var combinedFilter = [serverFilter, leagueFilter, raceFilter];
 	var jsonResult = ({$and : combinedFilter});
 	return jsonResult;
 }
 
-function BuildFilter(templateResult, prop)
+function BuildFilterPlaypal(templateResult, prop)
 {
 	var rawFilter = templateResult.split(", ");
 
@@ -138,4 +137,3 @@ function BuildFilter(templateResult, prop)
 	}
 }
 
-4

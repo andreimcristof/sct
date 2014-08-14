@@ -6,9 +6,6 @@ insertSearchFilterPlaypal = function(filter) {
 }
 
 
-
-
- 
 removeSearchFilterPlaypal = function(filter) {
   SearchFiltersPlaypal.remove(
   	{objectType: filter.objectType, name : filter.name}) 

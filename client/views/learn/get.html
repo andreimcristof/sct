@@ -1,20 +1,41 @@
 <template name="allStrategies">
 
-	{{#each allStrategies}}      
-		{{> strategy}}
-	{{/each}}
+	<div id="learnFilter" class="container-fluid">
+						
+				   		<div class="span2">
+							<strong>Filter by Race</strong>
+								{{#each allRaces}}      
+									{{> checkboxListItemLearn}}
+								{{/each}}  
+						</div>
 
-</template>
+						<div class="alert alert-info span6">
+							{{> searchFiltersLearn}}
+						</div>
 
-<template name="strategy">
-		<div>
-	
-		<p>Name: {{name}}</p>
-		<p>Race: {{race}}</p>
-		<p>Wiki link: {{wikilink}}</p>
-		<p>video link: <a href="{{videolink}}">Click for details</a></p>
-		
+						<div id="resultsVisualizer"></div>
 	</div>
-	<br/>
+
+	<table id="tblAllStrategies" cellspacing="0" width="100%" class="display compact cell-border">
+		<thead>
+			{{> strategyContainerHeaders}}
+		</thead>
+		<tfoot>
+			{{> strategyContainerHeaders}}
+		</tfoot>
+	</table>
 
 </template>
+
+
+<template name="strategyContainerHeaders">
+	<tr>
+		<th>Name</th>
+		<th>Race</th>
+		<th>Liquipedia</th>
+		<th>Video</th>
+	</tr>
+</template>
+
+
+
