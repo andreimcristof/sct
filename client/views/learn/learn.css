@@ -2,3 +2,17 @@
 {
 	font-weight: bold
 }
+
+.qtipLearnVideo{
+
+    max-width: 280px;
+    min-width: 480px;
+
+}
+
+#tblAllStrategies td, th
+{
+	text-align: center
+}
+
+ 

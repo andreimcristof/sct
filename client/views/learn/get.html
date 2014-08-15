@@ -9,6 +9,13 @@
 								{{/each}}  
 						</div>
 
+						<div class="span2">
+							<strong>Best used against</strong>
+								{{#each allBestAgainst}}      
+									{{> checkboxListItemLearnBestAgainst}}
+								{{/each}}  
+						</div>
+
 						<div class="alert alert-info span6">
 							{{> searchFiltersLearn}}
 						</div>
@@ -31,7 +38,8 @@
 <template name="strategyContainerHeaders">
 	<tr>
 		<th>Name</th>
-		<th>Race</th>
+		<th>For Race</th>
+		<th>Best Used Against</th>
 		<th>Liquipedia</th>
 		<th>Video</th>
 	</tr>

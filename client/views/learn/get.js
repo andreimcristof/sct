@@ -4,15 +4,15 @@ Template.allStrategies.helpers({
 		},
 		allRaces: function() {
 			return Races.find();
+		},
+		allBestAgainst: function() {
+			return Bestagainst.find();
 		}
 });
 
 Template.allStrategies.rendered = function()
 {
-	var filter = GetLearnFilterFromUserSelection();
-	var strategies = Template.allStrategies.allStrategies(filter).fetch();
-
-	DrawDataTable(strategies);
+	RenderDatatableLearn();
 }
 
 Template.allStrategies.destroyed= function()
@@ -43,16 +43,19 @@ function DrawDataTable(strategies)
         "fnDrawCallback":learnTableRenderCompleted,
        "aoColumns": [    
 	        {
-	            "mDataProp": "name"
+	            "mDataProp": "name", "width": "30%"
 	        },  
 	        {
-	            "mDataProp": "race"
+	            "mDataProp": "race", "width": "8%"
 	        },
 	        {
-	            "mDataProp": "wikilink"
+	            "mDataProp": "bestagainst", "width": "11%"
+	        },
+	        {
+	            "mDataProp": "wikilink", "width": "15%"
 	        }, 
 	        {
-	            "mDataProp": "videoLink"
+	            "mDataProp": "videoLink", "width": "15%"
 	        }
         ]
     });
@@ -62,7 +65,8 @@ function DrawDataTable(strategies)
 
 function learnTableRenderCompleted()
 {
-	InitializeTooltipForLearnTableLiquipediaCells();
+	InitializeTooltipForLearnTableVideoCells();
+	$('#tblAllStrategies_filter.dataTables_filter input').attr('placeholder', 'type strategy name');
 }
 
 function learnTableRowCreated ( row, data, index )
@@ -70,16 +74,25 @@ function learnTableRowCreated ( row, data, index )
 	var nameCell = $(row.cells[0]);
 	nameCell.addClass('learnTableNameCell');
 
-	var liquipediaCell = $(row.cells[2]);
+	var liquipediaCell = $(row.cells[3]);
 	var liquipediaLinkText = liquipediaCell.html();
-	var liquipediaFormatttedLink = "<div class='learnTableLiquipediaCell' wikilink='" + liquipediaLinkText + "'><a href='" + liquipediaLinkText + "'>Build details</a></div>";
+	var liquipediaFormatttedLink = "<div class='learnTableLiquipediaCell' wikilink='" + liquipediaLinkText + "'><a target='_blank' href='" + liquipediaLinkText + "'>Build details</a></div>";
 	liquipediaCell.html(liquipediaFormatttedLink);
+
+	var videoCell = $(row.cells[4]);
+	var videoLink = videoCell.html();
+	var videoFormatttedLink = "<div class='learnTableVideoCell' videolink='" + videoLink + "'><a target='_blank' href='" + videoLink + "'>Watch video</a></div>";
+	videoCell.html(videoFormatttedLink);
 }
 
 function GetLearnFilterFromUserSelection()
 {
 	var raceFilter = BuildFilterLearn(Template.searchFiltersLearn.learnRaceFilter(), "race");
-	return raceFilter;
+	var bestagainstFilter = BuildFilterLearn(Template.searchFiltersLearn.learnBestAgainstFilter(), "bestagainst");
+
+	var combinedFilter = [raceFilter, bestagainstFilter];
+	var jsonResult = ({$and : combinedFilter});
+	return jsonResult;
 }
 
 
@@ -113,19 +126,16 @@ function BuildFilterLearn(templateResult, prop)
 	
 	for(var i = 0; i < rawFilter.length; i++)
 	{
-		if(prop === "server")
-			filterArr.push({ server : rawFilter[i] });
+		if(prop === "bestagainst")
+			filterArr.push({ bestagainst : rawFilter[i] });
 		else if (prop === "race")
 			filterArr.push({ race : rawFilter[i] });
-		else if (prop === "league")
-			filterArr.push({ league : rawFilter[i] });
 	}
 
 	var jsonResult = ({$or : filterArr});
 	return jsonResult;
 
 
-	//helper function 
 	function RemoveAllElementInCaseItExists(filter)
 	{
 		var allIndex = filter.indexOf("all");
@@ -136,36 +146,41 @@ function BuildFilterLearn(templateResult, prop)
 	}
 }
 
-function InitializeTooltipForLearnTableLiquipediaCells()
+function InitializeTooltipForLearnTableVideoCells()
 {
-	$('div.learnTableLiquipediaCell').each(function(){
+	$('div.learnTableVideoCell').each(function(){
 		$(this).qtip({
 			content:
 			{
-				text: "Loading build details...",
-				ajax: {					
-					url: $(this).attr("wikilink"),
-					type: 'GET',
-					/*headers: { 
-						'Access-Control-Allow-Origin': '*',
-						'Content-Type':'text/plain'
-					 },
-					crossDomain: true,
-					data: {},
-					datatype: 'jsonp',*/
-					success: function(data, status) {
-             		   this.set('content.text', data);
-            		},
-            		error: function(data, status) {
-             		   this.set('content.text', "Cannot load. Click link directly, to see this strategy");
-            		}
-				}		
+				text: "<iframe width='460' height='250' src='" + FormatVideoLink($(this).attr("videolink")) + "' frameborder='0' allowfullscreen='true' allowscriptaccess='true'></iframe>"	
 			},
-			style: {height: 140, width: 200, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
+			style: {height: 260, width: {min:600}, classes: 'qtip-blue qtip-rounded qtipLearnVideo'},
 			show: { delay: 0 },
-			hide: { fixed : true }
+			hide: { fixed : true },
+			position : {
+			    my : 'right center',
+			    at : 'left center',
+				adjust : {
+					x:60
+				}
+			}
 		});
 	});
 
-	
+	function FormatVideoLink(link)
+	{
+		var videoId = youtube_parser(link);
+		var iframeFormattedYtbLink = "http://www.youtube.com/embed/" + videoId  +  "?autoplay=1";
+		return iframeFormattedYtbLink;
+	}
+
+	function youtube_parser(url){
+	    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var match = url.match(regExp);
+		if (match && match[2].length == 11) {
+		  return match[2];
+		} else {
+			return url;
+		}
+	}
 }

@@ -4,8 +4,10 @@
 
 name
 race
+bestagainst 
 wikiLink
 videoLink
+
 
 */
 

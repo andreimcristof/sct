@@ -49,5 +49,25 @@ Template.checkboxListItemLearn.events({
 				insertSearchFilterLearn(filterObject);
 			else
 				removeSearchFilterLearn(filterObject);
-		}
+		},		
 })
+
+
+
+
+Template.checkboxListItemLearnBestAgainst.events({
+	'click .checkboxListItemLearn': function(event) {    
+			var clickedObject = $(this);
+
+			var name = clickedObject.attr('name');
+			var type = clickedObject.attr('objectType');
+			var isChecked = event.target.checked;
+
+			var filterObject = { "objectType" :  type, "name" : name }
+			if(isChecked)
+				insertSearchFilterLearn(filterObject);
+			else
+				removeSearchFilterLearn(filterObject);
+		},		
+})
+

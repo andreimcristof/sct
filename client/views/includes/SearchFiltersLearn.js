@@ -38,6 +38,23 @@ Template.searchFiltersLearn.learnRaceFilter = function(){
 		}
 }
 
+Template.searchFiltersLearn.learnBestAgainstFilter = function(){
+	
+		var bestagainstChosen = SearchFiltersLearn.find({objectType : 'bestagainst'}).fetch();
+		if(bestagainstChosen.length == 0)
+			return "all";
+		else
+		{
+			var bestagainst = [];
+			for(var i = 0; i < bestagainstChosen.length; i++)
+			{
+				var name = bestagainstChosen[i].name;
+				bestagainst.push(name);
+			}
+			return bestagainst.join(", ");
+		}
+}
+
 
 Template.searchFiltersLearn.rendered = function(){
 	SearchFiltersLearn.remove({});
@@ -49,6 +66,6 @@ Template.searchFiltersLearn.events({
 		e.preventDefault();
 
 		SearchFiltersLearn.remove({});
-		$('.checkboxListItem').prop('checked', false);
+		$('.checkboxListItemLearn').prop('checked', false);
 	}
 });

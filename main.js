@@ -23,6 +23,13 @@ if (Meteor.isServer) {
       Races.insert( { name : "Protoss", objectType :"race"} );
     }
 
+    Bestagainst.remove({});
+    if (Bestagainst.find().count() === 0 ) { 
+      Bestagainst.insert( { name : "Terran", objectType :"bestagainst"} );
+      Bestagainst.insert( { name : "Zerg", objectType :"bestagainst"} );
+      Bestagainst.insert( { name : "Protoss", objectType :"bestagainst"} );
+    }
+
     Leagues.remove({});
      if (Leagues.find().count() === 0 ) { 
       Leagues.insert( { name : "Grandmaster", objectType :"league"} );
@@ -81,6 +88,10 @@ if (Meteor.isServer) {
       return Races.find(); 
     });
 
+  Meteor.publish("allBestAgainst", function () {
+      return Bestagainst.find(); 
+    });
+
   Meteor.publish("allLeagues", function () {
       return Leagues.find(); 
     });
@@ -101,6 +112,7 @@ if (Meteor.isClient) {
   //Meteor.subscribe("allPlayers");
   Meteor.subscribe("allPlaypals");
   Meteor.subscribe("allRaces");
+  Meteor.subscribe("allBestAgainst");
   Meteor.subscribe("allLeagues");
   Meteor.subscribe("allServers");
   Meteor.subscribe("allStrategies");
