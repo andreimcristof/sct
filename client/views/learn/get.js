@@ -66,7 +66,7 @@ function DrawDataTable(strategies)
 function learnTableRenderCompleted()
 {
 	InitializeTooltipForLearnTableVideoCells();
-	$('#tblAllStrategies_filter.dataTables_filter input').attr('placeholder', 'type strategy name');
+	$('#tblAllStrategies_filter.dataTables_filter input').attr('placeholder', 'Type strategy name');
 }
 
 function learnTableRowCreated ( row, data, index )
