@@ -2,13 +2,22 @@
 	<div class="page-header">
 			<h1>
 				<small>
-					Create and manage events, see events
+					Create and manage events
 				</small>
 			</h1>
 		<div class="alert alert-success" role="alert">Explanation about this page goes here</div>
 	</div>
 
-	<div id="eventCalendar"></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span8">
+    	<div id="eventCalendar"></div>  
+    </div>
+    <div class="span2">
+      {{> upcomingEvents}}
+    </div>
+  </div>
+</div>
 
 </template>
 
@@ -19,7 +28,7 @@
 	<div class="page-header">
 			<h1>
 				<small>
-					Create and manage events, see events
+					Add new event
 				</small>
 			</h1>
 		<div class="alert alert-success" role="alert">Explanation about this page goes here</div>
@@ -29,4 +38,14 @@
 	<input type="text" id="from" name="from">
 	<label for="to">to</label>
 	<input type="text" id="to" name="to">
+</template>
+
+<template name="upcomingEvents">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Panel heading</div>
+
+	  <table class="table-condensed">
+	    
+	  </table>
+	</div>
 </template>

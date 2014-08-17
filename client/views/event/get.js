@@ -23,7 +23,7 @@ Template.eventSubmit.rendered = function()
 Template.allEvents.rendered = function()
 {
 	$('#eventCalendar').datepicker({
-		numberOfMonths : 3,
+		numberOfMonths : 2,
 		width: "100%", 
     beforeShowDay : colorCalendarByScheduleStatus,
     onSelect : loadEventForSelectedDate
@@ -31,7 +31,7 @@ Template.allEvents.rendered = function()
 
   function colorCalendarByScheduleStatus(date)
   {
-    var newCssClass = IsEventClash(date) ? CalendarEventColorsCss.Busy : CalendarEventColorsCss.Free;
+    var newCssClass = IsEventClash(date) ? "busyEventDay" : "";
     var selectable = true;
     var tooltip = "";
     var returnValue = [selectable, newCssClass, tooltip]
@@ -50,9 +50,3 @@ Template.allEvents.rendered = function()
     return true;
   }
 }
-
-var CalendarEventColorsCss = 
-  {
-    Busy : "busyEventDay",
-    Free: "freeEventDay"
-  }

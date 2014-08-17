@@ -12,6 +12,7 @@ endDatetime
 stream
 comment
 submitterTwitter
+submitter
 discussionThread (optional)
 liquipediaLink (optional)
 
