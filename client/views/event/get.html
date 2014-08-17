@@ -8,16 +8,16 @@
 		<div class="alert alert-success" role="alert">Explanation about this page goes here</div>
 	</div>
 
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span8">
-    	<div id="eventCalendar"></div>  
-    </div>
-    <div class="span2">
-      {{> upcomingEvents}}
-    </div>
-  </div>
-</div>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-7">
+	    	<div id="eventCalendar"></div>  
+	    </div>
+	    <div class="col-md-4">
+	      {{> upcomingEvents}}
+	    </div>
+	  </div>
+	</div>
 
 </template>
 
@@ -42,9 +42,9 @@
 
 <template name="upcomingEvents">
 	<div class="panel panel-default">
-	  <div class="panel-heading">Panel heading</div>
+	  <div class="panel-heading">Upcoming events</div>
 
-	  <table class="table-condensed">
+	  <table class="table table-striped">
 	    
 	  </table>
 	</div>

@@ -4,12 +4,12 @@ div#eventCalendar .ui-datepicker{
 
 .busyEventDay .ui-state-default
 {
-	/*change me dynamically when loading calendar*/ 
-	background: #d6e9c6;
+	/*change me dynamically when loading calendar
+	background: #d6e9c6;*/
 	
 }
 
 .freeEventDay .ui-state-default
 {
-	background-color: lightgreen;
+
 }

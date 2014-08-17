@@ -9,7 +9,7 @@
 					<div class="form-group">
 						{{> autoComplete }}	
 					</div>
-					<a href="{{pathFor 'feedback'}}" class="topbarSubmit btn btn-default"><i class="fa fa-search" title="Search"></i></a>	
+					<a href="{{pathFor 'home'}}" class="topbarSubmit btn btn-default"><i class="fa fa-search" title="Search"></i></a>	
 				</form>
 				{{#if currentUser}}
 					<div class="navbar-form navbar-left">
@@ -25,7 +25,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li>
 								<div class="btn-group navbar-form" role="toolbar">
-									<a href="{{pathFor 'allPlaypals'}}" class="btn btn-default"><i class="fa fa-paper-plane-o" title="Send us your feedback about SC2Talk"></i></a>
+									<a href="{{pathFor 'feedback'}}" class="btn btn-default"><i class="fa fa-paper-plane-o" title="Send us your feedback about SC2Talk"></i></a>
 								</div>
 							</li>
 							{{#if currentUser}}

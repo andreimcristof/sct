@@ -7,10 +7,15 @@ if (Meteor.isServer) {
     //Players.remove({});
     //InsertMockPlayers();
     
+    Events.remove({});
+    InsertMockEvents();
+    
     Playpals.remove({});
     InsertMockPlaypals();
 
     //end mocks
+
+
 
     //prefill constants
     Strategies.remove({});
