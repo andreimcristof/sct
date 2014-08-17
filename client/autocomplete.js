@@ -8,18 +8,19 @@ Template.autoComplete.settings = function() {
    rules: [
      {
        token: '',
-       collection: Players,
-       field: "alias",
-       template: Template.userPill
+       collection: Strategies,
+       field: "name",
+       matchAll: true,
+       template: Template.autocompleteStrategy
      },
      {
        token: '!',
-       collection: Players,
+       collection: Events,
        field: "_id",
        options: '',
        matchAll: true,
        filter: { type: "autocomplete" },
-       template: Template.userPill
+       template: Template.autocompleteEvent
      }
    ]
   }

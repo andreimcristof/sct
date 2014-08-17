@@ -5,11 +5,15 @@
 take this from the event making on TL. 
 combine with what z33k has. 
 
-
-name
-eventDate
+title
+imageUrl
+startDatetime
+endDatetime
+stream
 comment
-submitted
+submitterTwitter
+discussionThread (optional)
+liquipediaLink (optional)
 
 */
 

@@ -5,7 +5,8 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-3": {},
-      "autocomplete": {}
+      "autocomplete": {},
+      "font-awesome": {}
     },
     "packages": {
       "iron-router": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/mizzao/meteor-autocomplete.git",
         "tag": "v0.4.6",
         "commit": "6db34b563a833eee4b9a04f16f2f420e2eac7fb3"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

@@ -30,6 +30,11 @@
 					
 					{{#if currentUser}}
 						<li>
+							<div class="btn-group btn-group-lg" role="toolbar">
+								<a href="{{pathFor 'allPlaypals'}}" class="btn btn-default"><i class="fa fa-paper-plane-o" title="Send feedback about SC2Talk"></i></a>
+							</div>
+						</li>
+						<li>
 							{{> notifier }} 
 						</li>
 					{{/if}}
