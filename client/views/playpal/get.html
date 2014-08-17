@@ -14,13 +14,13 @@
 			{{#with ownPlaypal}} 
 				{{> playpal}}    
 				
-					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-small">Modify your profile</a>
+					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-default btn-sm">Modify your profile</a>
 				
 			{{/with}} 
 
 			{{#unless ownPlaypal}}
 			<p>People don't know about you yet; click below to add your profile to the list of available players.</p>
-				<a href="{{pathFor 'playpalSubmit'}}" class="btn btn-lg">Add yourself to list</a>
+				<a href="{{pathFor 'playpalSubmit'}}" class="btn btn-default btn-sm">Add yourself to list</a>
 			{{/unless}}	
 		</div>
 	

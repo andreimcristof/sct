@@ -2,8 +2,9 @@
   "packages": {
     "iron-router": {},
     "spin": {},
-    "accounts-ui-bootstrap-3": {},
     "autocomplete": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

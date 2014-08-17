@@ -9,8 +9,8 @@ accounts-google
 accounts-twitter
 accounts-password
 iron-router
-accounts-ui-bootstrap-3
-bootstrap
 spin
 autocomplete
 font-awesome
+bootstrap-3
+accounts-ui-bootstrap-3
