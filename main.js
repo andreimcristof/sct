@@ -104,6 +104,10 @@ if (Meteor.isServer) {
   Meteor.publish("allServers", function () {
       return Servers.find(); 
     });
+
+   Meteor.publish("allEvents", function () {
+      return Events.find(); 
+    });
 });
 }
 
@@ -121,5 +125,6 @@ if (Meteor.isClient) {
   Meteor.subscribe("allLeagues");
   Meteor.subscribe("allServers");
   Meteor.subscribe("allStrategies");
+  Meteor.subscribe("allEvents");
 }
 

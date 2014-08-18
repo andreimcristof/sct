@@ -1,3 +1,15 @@
+Template.allEvents.helpers({  
+    allEvents: function() {    
+      return Events.find();
+    }
+});
+
+Template.upcomingEvents.helpers({  
+     upcomingEvents: function() {    
+        return Events.find({}, {limit:10, sort: {startDate: 1 }  }).fetch()
+    }
+});
+
 Template.eventSubmit.rendered = function()
 {
 	$(function() {

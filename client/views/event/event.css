@@ -9,7 +9,12 @@ div#eventCalendar .ui-datepicker{
 	
 }
 
-.freeEventDay .ui-state-default
+#upcomingEventsTable
 {
+	font-size: x-small;
+}
 
+.panel-heading
+{
+	text-align: center;
 }
