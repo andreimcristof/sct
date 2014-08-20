@@ -1,6 +1,11 @@
 Template.allEvents.helpers({  
     allEvents: function() {    
       return Events.find();
+    },
+
+    eventsBySelectedDate: function(selectedDate)
+    {
+      return Events.find({}, {sort: {startDate: 1 }  }).fetch()
     }
 });
 
@@ -13,21 +18,43 @@ Template.upcomingEvents.helpers({
 Template.eventSubmit.rendered = function()
 {
 	$(function() {
-    $( "#from" ).datepicker({
+    $( "#startDate" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
       onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        $( "#endDate" ).datepicker( "option", "minDate", selectedDate );
       }
     });
-    $( "#to" ).datepicker({
+    $( "#endDate" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
       onClose: function( selectedDate ) {
-        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        $( "#startDate" ).datepicker( "option", "maxDate", selectedDate );
       }
+    });
+
+    $('#startTime').timepicker( {
+      controlType: 'select',
+      timeFormat: 'hh:mm tt'
+    });
+
+    $('#startTime').on('click', function(){
+        if($(this).val() === "")
+          $(this).val("12:00 am");
+    });
+
+
+
+    $('#endTime').timepicker({
+      controlType: 'select',
+      timeFormat: 'hh:mm tt'
+    });
+
+    $('#endTime').on('click', function(){
+        if($(this).val() === "")
+          $(this).val("12:00 am");
     });
   });
 }

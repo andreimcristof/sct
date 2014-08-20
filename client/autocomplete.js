@@ -16,7 +16,7 @@ Template.autoComplete.settings = function() {
      {
        token: '!',
        collection: Events,
-       field: "_id",
+       field: "title",
        options: '',
        matchAll: true,
        filter: { type: "autocomplete" },
