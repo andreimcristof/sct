@@ -22,3 +22,20 @@ textarea {
 .nodePlaypal:hover {
   opacity: 1;
 }
+
+.topBarSearchListElement 
+{
+	color: black ;
+}
+
+.-autocomplete-item.selected 
+{
+	background-color: lightgray;
+	cursor: pointer; cursor: hand;
+}
+
+#topBarSearchText
+{
+	width: 200px;
+	font-size: small;
+}
