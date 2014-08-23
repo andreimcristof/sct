@@ -18,3 +18,21 @@ div#eventCalendar .ui-datepicker{
 {
 	text-align: center;
 }
+
+.eventSubmitForm #startTime,
+.eventSubmitForm #endTime
+{
+	width: 100px;
+}
+
+.eventSubmitForm #startDate,
+.eventSubmitForm #endDate
+{
+	width: 120px;
+}
+
+.eventSubmitForm #streamLink,
+.eventSubmitForm #title
+{
+	width: 394px;
+}
