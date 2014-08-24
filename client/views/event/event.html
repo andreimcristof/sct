@@ -1,7 +1,65 @@
+<template name="event">
 
-<template name="eventTableRow">
-	<tr>
-		<td>{{readableDate startDate}} at {{readableTime startTime}}</td>
-		<td>{{title}}</td>
-	</tr>
+	<div class="page-header">
+			<h1>
+				<small>
+					Event: <strong>{{title}}</strong>
+				</small>
+			</h1>
+	</div>
+
+	<div class="alert alert-success text-center">
+				<span class="eventCountdownHeader">Remaining until start:</span>	
+				<div id="eventCountdownContainer" role="alert">
+					<strong>{{countDownUntilDate startDate endDate "eventCountdownContainer"}}</strong>
+				</div>
+			</div>
+
+	<div class="row">
+	<div class="col-md-12">
+	<p class="bg-info text-center">Exact start date and time in all timezones</p>
+	</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					EDT (USA New York Time)
+				</div>
+				<div class="panel-body">	
+					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "EDT"}}</strong>
+				</div>
+			</div>
+		</div>	
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					CEST (Germany Berlin Time)
+				</div>
+				<div class="panel-body">	
+					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "CEST"}}</strong>
+				</div>
+			</div>
+		</div>	
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					KST (Korea Seoul Time)
+				</div>
+				<div class="panel-body">	
+					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "KST"}}</strong>
+				</div>
+			</div>
+		</div>	
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					CST (China Shanghai Time)
+				</div>
+				<div class="panel-body">	
+					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "CST"}}</strong>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
 </template>
+

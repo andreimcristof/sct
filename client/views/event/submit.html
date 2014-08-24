@@ -1,0 +1,69 @@
+
+
+<template name="eventSubmit">
+	<div class="page-header">
+			<h1>
+				<small>
+					Add new event
+				</small>
+			</h1>
+		<div class="alert alert-success" role="alert">Explanation about this page goes here</div>
+	</div>
+
+
+	<form class="form-horizontal eventSubmitForm" role="form">
+
+		<div class="form-group">
+			<label for="title" class="col-sm-2 control-label">Name of Event</label>
+			<input type="text" id="title" name="title" placeholder="Event Title" maxlength="80">    
+		</div>
+
+		<div class="form-group">
+			<div>
+				<label for="startDate" class="col-sm-2 control-label">Starts On</label>
+			</div>
+			<div>
+				<input type="text" id="startDate" name="startDate" placeholder="Starting Date" readonly = "readonly">
+				<input type="text" id="startTime" name="startTime" placeholder="Starting Time" readonly = "readonly">    		    
+			</div>
+		</div>
+
+		<div class="form-group">
+		<div>
+			<label for="endDate" class="col-sm-2 control-label">Ends On</label>
+		</div>
+			<input type="text" id="endDate" name="endDate" placeholder="Ending Date" readonly = "readonly">    		
+			<input type="text" id="endTime" name="endTime" placeholder="Ending Time" readonly = "readonly">    		
+		</div>
+
+		<div class="form-group">
+		<div>
+			<label class="col-sm-2 control-label">Timezone</label>
+		</div>
+			<div class="control-group">
+				{{> allTimezones}}		
+			</div>
+		</div>		
+
+		<div class="form-group">
+		    	<label for="banner" class="col-sm-2 control-label">Banner Image</label>
+		    	<input type="text" id="imageUrl" name="imageUrl" placeholder="Upload Banner Image">    		
+		</div>
+
+		<div class="form-group">
+			<label for="streamLink" class="col-sm-2 control-label">Streamed at</label>
+		    <input type="text" id="streamLink" name="streamLink" placeholder="Link to stream">    		
+		</div>
+
+		<div class="form-group">
+			<label for="comment" class="col-sm-2 control-label">Other Details</label>
+		    <textarea id="comment" name="comment" title="comment" placeholder="Description"> </textarea> 
+		</div>
+
+		<div class="form-group">
+			<label for="submit" class="col-sm-2 control-label"></label>
+			<input type="submit" value="Add Event" class="btn btn-primary" />
+		</div>
+	</form>
+		
+</template>

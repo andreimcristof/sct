@@ -1,0 +1,11 @@
+<template name="allTimezones">
+	<select id="timezones" class="">
+		{{#each allTimezones}}   
+			{{> timezone}}    
+		{{/each}}  
+	</select>
+</template>
+
+<template name="timezone">
+		<option value="{{value}}">{{name}}</option>    
+</template>

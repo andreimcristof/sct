@@ -37,24 +37,27 @@ Template.eventSubmit.rendered = function()
 
     $('#startTime').timepicker( {
       controlType: 'select',
-      timeFormat: 'hh:mm tt'
+      stepMinute: 15,
+      timeFormat: 'HH:mm'
     });
 
     $('#startTime').on('click', function(){
         if($(this).val() === "")
-          $(this).val("12:00 am");
+          $(this).val("00:00");
     });
 
 
 
     $('#endTime').timepicker({
       controlType: 'select',
-      timeFormat: 'hh:mm tt'
+      hourGrid: 4,
+      stepMinute: 15,
+      timeFormat: 'HH:mm'
     });
 
     $('#endTime').on('click', function(){
         if($(this).val() === "")
-          $(this).val("12:00 am");
+          $(this).val("00:00");
     });
   });
 }
@@ -65,27 +68,46 @@ Template.allEvents.rendered = function()
 		numberOfMonths : 2,
 		width: "100%", 
     beforeShowDay : colorCalendarByScheduleStatus,
-    onSelect : loadEventForSelectedDate
+    onSelect : loadEventForSelectedDateInEventDetailView
 	});
 
   function colorCalendarByScheduleStatus(date)
   {
-    var newCssClass = IsEventClash(date) ? "busyEventDay" : "";
+    
+    var cnt = getEventsForDate(date).count();
+    
+    
+    var newCssClass = cnt > 0 ? "busyEventDay" : "";
     var selectable = true;
     var tooltip = "";
     var returnValue = [selectable, newCssClass, tooltip]
     return returnValue;
   }
 
-  function loadEventForSelectedDate(date, inst)
+  function loadEventForSelectedDateInEventDetailView(date, inst)
   {
-      
-  }
 
-  function IsEventClash(date)
-  {
-    //check event clash here.
-    //check an array of events saved as json with key as unix date
-    return true;
-  }
+      var pDate = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
+      console.log(pDate);
+      var eventsOnDate = getEventsForDate(pDate);
+      console.log(eventsOnDate.fetch());
+
+      return eventsOnDate;
+  };
+}
+
+Template.event.destroyed= function(){
+  clearInterval(EventPageGlobals.EventCountdownTimer);
+}
+
+function getEventsForDate(pDate) {
+  
+  var eventsOnThatDate = Events.find
+  (
+      {
+        "startDate": {"$lt": pDate}, "endDate": {"$gte": pDate} 
+      }
+  );
+       
+  return eventsOnThatDate;
 }

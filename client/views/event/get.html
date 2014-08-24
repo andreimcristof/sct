@@ -18,10 +18,10 @@
     </div>
 
     <div class="row">
-	    <div class="col-md-8">
+	    <div class="col-md-7">
 	    	<div id="eventCalendar"></div>  
 	    </div>
-    	<div class="col-md-4">
+    	<div class="col-md-5">
   			{{> upcomingEvents}}      
     	</div>
     </div>
@@ -31,77 +31,24 @@
 
 
 
-<template name="eventSubmit">
-	<div class="page-header">
-			<h1>
-				<small>
-					Add new event
-				</small>
-			</h1>
-		<div class="alert alert-success" role="alert">Explanation about this page goes here</div>
-	</div>
-
-
-	<form class="form-horizontal eventSubmitForm" role="form">
-
-		<div class="form-group">
-			<label for="title" class="col-sm-2 control-label">Name of Event</label>
-			<input type="text" id="title" name="title" placeholder="Event Title">    
-		</div>
-
-		<div class="form-group">
-			<div>
-				<label for="startDate" class="col-sm-2 control-label">Starts On</label>
-			</div>
-			<div>
-				<input type="text" id="startDate" name="startDate" placeholder="Starting Date">
-				<input type="text" id="startTime" name="startTime" placeholder="Starting Time">    		    
-			</div>
-		</div>
-
-		<div class="form-group">
-		<div>
-			<label for="endDate" class="col-sm-2 control-label">Ends On</label>
-		</div>
-			<input type="text" id="endDate" name="endDate" placeholder="Ending Date">    		
-			<input type="text" id="endTime" name="endTime" placeholder="Ending Time">    		
-		</div>
-
-		<div class="form-group">
-		    	<label for="banner" class="col-sm-2 control-label">Banner Image</label>
-		    	<input type="text" id="imageUrl" name="imageUrl" placeholder="Upload Banner Image">    		
-		</div>
-
-		<div class="form-group">
-			<label for="streamLink" class="col-sm-2 control-label">Streamed at</label>
-		    <input type="text" id="streamLink" name="streamLink" placeholder="Link to stream">    		
-		</div>
-
-		<div class="form-group">
-			<label for="comment" class="col-sm-2 control-label">Other Details</label>
-		    <textarea name="comment" title="comment" placeholder="Description"> </textarea> 
-		</div>
-
-		<div class="form-group">
-			<label for="submit" class="col-sm-2 control-label"></label>
-			<input type="submit" value="Submit" class="btn btn-primary" />
-		</div>
-	</form>
-		
-</template>
-
 
 
 
 <template name="upcomingEvents">
 	<div class="panel panel-default">
-	  <div class="panel-heading">Upcoming events</div>
+	  <div class="panel-heading"><strong>Upcoming events</strong></div>
 
 	  <table id="upcomingEventsTable" class="table table-striped table-condensed">
-	  	<thead>{{> upcomingEventsHeader}}</thead>
+	  	<thead>
+	  		{{#if upcomingEvents}} 
+	  			{{> upcomingEventsHeader}}
+	  		{{/if}}	
+	  	</thead>
 	  	<tbody>
 		    {{#each upcomingEvents}}      
-				{{> eventTableRow}}
+				{{> eventUpcomingTableRow}}
+
+			{{else}}{{> emptyUpcomingTable}}
 			{{/each}}
 		</tbody>
 	  </table>
@@ -111,7 +58,7 @@
 <template name="upcomingEventsHeader">
 		<tr>
 			<td><strong>Starts on</strong></td>
-			<td><strong>Event</strong></td>
+			<td class="EventName"><strong>Event</strong></td>
 		</tr>
 </template>
 

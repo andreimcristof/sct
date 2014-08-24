@@ -4,14 +4,19 @@ div#eventCalendar .ui-datepicker{
 
 .busyEventDay .ui-state-default
 {
-	/*change me dynamically when loading calendar
-	background: #d6e9c6;*/
+	/*change me dynamically when loading calendar*/
+	background: #d6e9c6;
 	
 }
 
 #upcomingEventsTable
 {
 	font-size: x-small;
+}
+
+#upcomingEventsTable .EventName
+{
+	width: 50%;
 }
 
 .panel-heading
@@ -35,4 +40,8 @@ div#eventCalendar .ui-datepicker{
 .eventSubmitForm #title
 {
 	width: 394px;
+}
+
+#eventCountdownContainer{
+	font-size: xx-large;
 }

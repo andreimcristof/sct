@@ -1,0 +1,1 @@
+Timezones = new Meteor.Collection("timezones");

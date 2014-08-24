@@ -39,51 +39,7 @@
 				</form>
 			</div>	
 		</nav>
-		<!--
-		<header class="navbar navbar-fixed-top">
-
-			<div class="navbar-inner">
-				<div class="container">
-
-					<a class="brand" href="{{pathFor 'home'}}">SC2Talk</a>
-
-					{{#if currentUser}}
-						<div class="">
-							<ul class="nav">
-								<li>
-									{{> autoComplete }}	
-								</li>
-
-								
-								<li>
-									{{> topButtons }} 		
-								</li>
-								<li>
-									
-								</li>
-							</ul>
-						</div>
-					{{/if}}
-					
-					<ul class="nav pull-right">
-					
-					{{#if currentUser}}
-						<li>
-							<div class="btn-group" role="toolbar">
-								<a href="{{pathFor 'allPlaypals'}}" class="btn btn-default"><i class="fa fa-paper-plane-o" title="Send feedback about SC2Talk"></i></a>
-							</div>
-						</li>
-						<li>
-							{{> notifier }} 
-						</li>
-					{{/if}}
-					
-					{{> loginButtons }} 			
-					</ul>
-				</div>
-			</div>
-		</header>
-		-->
+		
 		{{> errors}} 
 		<div id="main" class="row-fluid">
 			{{> yield}}

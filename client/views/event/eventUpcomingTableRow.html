@@ -1,0 +1,16 @@
+
+<template name="eventUpcomingTableRow">
+	<tr>
+		<td>{{toMomentDateAndTime startDate}} {{timezone}}</td>
+		<td>
+			<a href="{{pathFor 'event' _id=this._id}}">{{toShortened title}}</a>
+		</td>
+	</tr>
+</template>
+
+
+<template name="emptyUpcomingTable">
+	<tr>
+		<td colspan="2" class="text-center">There are currently no events scheduled.</td>
+	</tr>
+</template>

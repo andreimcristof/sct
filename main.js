@@ -7,8 +7,8 @@ if (Meteor.isServer) {
     //Players.remove({});
     //InsertMockPlayers();
     
-    Events.remove({});
-    InsertMockEvents();
+    //Events.remove({});
+    //InsertMockEvents();
     
     Playpals.remove({});
     InsertMockPlaypals();
@@ -26,6 +26,14 @@ if (Meteor.isServer) {
       Races.insert( { name : "Terran", objectType :"race"} );
       Races.insert( { name : "Zerg", objectType :"race"} );
       Races.insert( { name : "Protoss", objectType :"race"} );
+    }
+
+    Timezones.remove({});
+    if (Timezones.find().count() === 0 ) { 
+        Timezones.insert( { value : "EDT", name :"EDT (Eastern Daylight Time)"} );
+        Timezones.insert( { value : "CEST", name :"CEST (Central European Summer Time)"} );
+        Timezones.insert( { value : "KST", name :"KST (Korea Standard Time"} );
+        Timezones.insert( { value : "CST", name :"CST (China Standard Time"} );
     }
 
     Bestagainst.remove({});
@@ -93,6 +101,10 @@ if (Meteor.isServer) {
       return Races.find(); 
     });
 
+ Meteor.publish("allTimezones", function () {
+      return Timezones.find(); 
+    });
+
   Meteor.publish("allBestAgainst", function () {
       return Bestagainst.find(); 
     });
@@ -126,5 +138,6 @@ if (Meteor.isClient) {
   Meteor.subscribe("allServers");
   Meteor.subscribe("allStrategies");
   Meteor.subscribe("allEvents");
+  Meteor.subscribe("allTimezones");
 }
 
