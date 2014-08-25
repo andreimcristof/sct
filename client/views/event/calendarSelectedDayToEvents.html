@@ -1,0 +1,34 @@
+
+<template name="selectedEvents">
+	<div class="alert alert-info text-center">
+		<h5>Events scheduled for <strong>{{readableMomentDate param}}</strong>:</h5>
+	</div>
+
+	<table class="table table-bordered">
+		
+		<tbody>
+			{{#each selectedEvents param}}  
+				{{> selectedEvent}}
+
+			{{else}}{{> emptySelectedTable}}
+			{{/each}}	
+		</tbody>
+	</table>
+</template>
+
+
+<template name="selectedEvent">
+	<tr>
+		<td>
+			<div class="text-center"><a title="click to see details for {{title}}" href="{{pathFor 'event' _id=this._id}}">{{title}}</a></div>
+		</td>
+	</tr>
+</template>
+
+
+
+<template name="emptySelectedEventsTable">
+	<tr>
+		<td class="text-center">There are currently no events scheduled.</td>
+	</tr>
+</template>

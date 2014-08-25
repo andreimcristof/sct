@@ -2,6 +2,10 @@ Handlebars.registerHelper("readableDate", function(timestamp) {
     return new Date(timestamp).toDateString()
 });
 
+Handlebars.registerHelper("readableMomentDate", function(pDate) {
+    return moment(pDate).format("dddd, MMMM Do YYYY");
+});
+
 Handlebars.registerHelper("toMomentDateAndTime", function(timestamp) {
 	return moment(timestamp).format("dddd, MMMM Do YYYY, hh:mm a");
 	;
@@ -93,3 +97,5 @@ Handlebars.registerHelper("convertUTCDateToReadableFormatInUserTimezone", functi
 		}
 		return userTimezonedDate.format("dddd, MMMM Do YYYY, HH:mm a");
 });
+
+

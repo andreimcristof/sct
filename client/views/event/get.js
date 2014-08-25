@@ -86,13 +86,12 @@ Template.allEvents.rendered = function()
 
   function loadEventForSelectedDateInEventDetailView(date, inst)
   {
-
       var pDate = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
-      console.log(pDate);
-      var eventsOnDate = getEventsForDate(pDate);
-      console.log(eventsOnDate.fetch());
+      
+      var container = $('#selectedEventsContainer');
+      container.empty();
 
-      return eventsOnDate;
+      UI.insert(UI.renderWithData(Template.selectedEvents, {param: pDate}), container[0]);
   };
 }
 
@@ -111,3 +110,12 @@ function getEventsForDate(pDate) {
        
   return eventsOnThatDate;
 }
+
+
+Template.selectedEvents.helpers({  
+    selectedEvents: function(pDate) {    
+      var eventsOnDate = getEventsForDate(pDate);
+
+      return eventsOnDate;
+    }
+});
