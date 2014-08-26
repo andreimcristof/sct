@@ -16,7 +16,7 @@ div#eventCalendar .ui-datepicker{
 
 #upcomingEventsTable .EventName
 {
-	width: 50%;
+	/*width: 50%;*/
 }
 
 .panel-heading
@@ -48,4 +48,16 @@ div#eventCalendar .ui-datepicker{
 
 #selectedEventsContainer{
 	margin-top: 20px;
+}
+
+.tblEventDetails .bigRow{
+	font-size: x-large;
+}
+
+.tblEventDetails .smallRow{
+	font-size: x-small;
+}
+
+.tblEventDetails .streamLink{
+	cursor: pointer; cursor: hand; 
 }

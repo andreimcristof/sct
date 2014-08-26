@@ -1,5 +1,4 @@
 <template name="event">
-
 	<div class="page-header">
 			<h1>
 				<small>
@@ -9,20 +8,22 @@
 	</div>
 
 	<div class="alert alert-success text-center">
-				<span class="eventCountdownHeader">Remaining until start:</span>	
-				<div id="eventCountdownContainer" role="alert">
-					<strong>{{countDownUntilDate startDate endDate "eventCountdownContainer"}}</strong>
-				</div>
-			</div>
+		<span class="eventCountdownHeader">Remaining until start:</span>	
+		<div id="eventCountdownContainer" role="alert">
+			<strong>{{countDownUntilDate startDate endDate "eventCountdownContainer"}}</strong>
+		</div>
+	</div>
 
 	<div class="row">
-	<div class="col-md-12">
-	<p class="bg-info text-center">Exact start date and time in all timezones</p>
-	</div>
+
+		<div class="col-md-12">
+			<p class="bg-info text-center">Exact start date and time in all timezones</p>
+		</div>
+
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					EDT (USA New York Time)
+					EDT (Washington, New York)
 				</div>
 				<div class="panel-body">	
 					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "EDT"}}</strong>
@@ -32,7 +33,7 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					CEST (Germany Berlin Time)
+					CEST/CET (Berlin, Madrid)
 				</div>
 				<div class="panel-body">	
 					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "CEST"}}</strong>
@@ -42,7 +43,7 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					KST (Korea Seoul Time)
+					KST (Seoul, Busan)
 				</div>
 				<div class="panel-body">	
 					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "KST"}}</strong>
@@ -52,14 +53,58 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					CST (China Shanghai Time)
+					CST (Shanghai, Taipei)
 				</div>
 				<div class="panel-body">	
 					<strong>{{convertUTCDateToReadableFormatInUserTimezone startDate "CST"}}</strong>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
-	
-</template>
 
+	<div class="row">
+
+<!--
+		title : "Event 1",
+		imageUrl: "http://i.imgur.com/Tnbim07.jpg",
+		startDate : new Date(2014, 5, 2),
+		startTime: new Date(2014, 3, 3),
+		endDate : new Date(2014, 1, 2),
+		endTime : new Date(2014, 1, 2).getTime(),
+		streamLink: "www.twitch.tv/RotterdaM08",
+		comment: "event1",
+		submitterId: "6uMdFTiBsx9w2Ceiv",
+		submitterTwitter: "xtornzvt" ,
+		submitted : new Date().getTime()
+-->
+		<div class="col-md-12 text-center">
+			<img src="{{imageUrl}}" />
+		</div>
+
+		<div class="col-md-12">
+			<table class="table table-hover text-center tblEventDetails">
+ 				<thead></thead>
+ 				<tbody>
+ 				 	<tr class="bigRow">
+ 				 		<td><strong>Starts On</strong>:	{{convertUTCDateToReadableFormatInUserTimezone startDate timezone}}</td>
+ 				 	</tr>
+ 				 	<tr class="bigRow">
+ 				 		<td><strong>Ends On</strong>:	{{convertUTCDateToReadableFormatInUserTimezone endDate timezone}}</td>
+ 				 	</tr>
+ 				 	<tr class="bigRow streamLink">
+ 				 		<td><strong>Streamed at</strong>: <a href="{{streamLink}}" title="visit stream" target="_blank">Visit Stream</a></td>
+ 				 	</tr>
+ 				 	<tr class="bigRow">
+ 				 		<td>{{comment}}</td>
+ 				 	</tr>
+ 				 	<tr class="smallRow">
+ 				 		<td><strong>Submitted By</strong>:	{{submitterTwitter}}</td>
+ 				 	</tr>
+ 				 	<tr class="smallRow">
+ 				 		<td><strong>Entered On</strong>:	{{convertUTCDateToReadableFormatInUserTimezone submitted timezone}}</td>
+ 				 	</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div>
+</template>
