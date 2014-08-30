@@ -2,3 +2,17 @@ twitter api connect to login for testing purposes:
 
 API key	KJc3nMWvbpQh8BGyePWQaYWkN
 API secret	svHCXyCJ61v3C3ZpWgydlJJX9sQFHObquvLI1RAbqRdUd2vD1F
+----------
+
+
+
+appname: sctlk
+email: xt email
+
+clientID: 
+681172a9413df22
+
+client secret:
+5d0be4749c84415b6b7029936acd2e472ae471e6
+
+-------------

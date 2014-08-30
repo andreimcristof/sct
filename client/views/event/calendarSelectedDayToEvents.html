@@ -1,8 +1,10 @@
 
 <template name="selectedEvents">
-	<div class="alert alert-info text-center">
-		<h5>Events scheduled for <strong>{{readableMomentDate param}}</strong>:</h5>
-	</div>
+	
+		<div class="text-center">
+			<h5>Events scheduled for <strong>{{readableMomentDate param}}</strong>:</h5>
+		</div>
+	
 
 	<table class="table table-bordered">
 		
@@ -10,7 +12,7 @@
 			{{#each selectedEvents param}}  
 				{{> selectedEvent}}
 
-			{{else}}{{> emptySelectedTable}}
+			{{else}}{{> emptySelectedEventsTable}}
 			{{/each}}	
 		</tbody>
 	</table>
@@ -29,6 +31,8 @@
 
 <template name="emptySelectedEventsTable">
 	<tr>
-		<td class="text-center">There are currently no events scheduled.</td>
+		<td class="text-center">
+			None. Click <a class="btn btn-default btn-xs" href="{{pathFor 'eventSubmit'}}">here</a> to add one.
+		 </td>
 	</tr>
 </template>

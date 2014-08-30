@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 body { 
-    padding-top: 72px; 
+    padding-top: 20px; 
 }
 
 .topbarSubmit
@@ -36,6 +36,17 @@ textarea {
 
 #topBarSearchText
 {
-	width: 200px;
+	width: 250px;
 	font-size: small;
+}
+
+.pageNotFoundContainer
+{
+    position: absolute;
+    height: 200px;
+    width: 400px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;
+
 }

@@ -61,3 +61,7 @@ div#eventCalendar .ui-datepicker{
 .tblEventDetails .streamLink{
 	cursor: pointer; cursor: hand; 
 }
+
+.eventfileUploadControl{
+	margin-left: -14px;
+}
