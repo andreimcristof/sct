@@ -119,3 +119,98 @@ Handlebars.registerHelper("convertUTCDateToReadableFormatInUserTimezone", functi
 });
 
 
+ImgUrlHelper = 
+{
+    InitUploadValidateFile :function(element)
+    {
+         var file = element.files[0]
+         if(!file)
+            return;
+
+
+        var valid_extensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i;
+        if (valid_extensions.test(file.name)) {
+
+            ImgUrlHelper.ShowResult("load");
+            this.Upload(file);
+        } 
+        else {
+            ImgUrlHelper.ShowResult("err");
+        }
+    },           
+
+    Upload: function(file) {
+
+        var fd = new FormData(); 
+        fd.append("image", file); 
+        var xhr = new XMLHttpRequest(); 
+
+        xhr.open("POST", "https://api.imgur.com/3/upload", true); 
+        xhr.onload = this.OnLoad;
+        xhr.onerror = this.OnNetworkError;
+        xhr.onreadystatechange = this.OnReadyStateChange;
+        xhr.onprogress= this.OnProgress;
+        
+        xhr.setRequestHeader('Authorization', 'Client-ID 681172a9413df22');
+        xhr.send(fd);
+    },
+
+    OnReadyStateChange : function(){
+        if(this.readyState == 4 && this.status == 200)
+        {
+            var link = JSON.parse(this.responseText).data.link;
+            $('#bannerUploadResultHidden').val(link);
+
+            ImgUrlHelper.ShowResult("ok");
+        }
+        if(this.status != 200)
+        {
+            ImgUrlHelper.ShowResult("err");
+
+            //log error
+        }
+    },
+    
+    OnNetworkError : function()
+    {
+        ImgUrlHelper.ShowResult("err");
+
+        //log error
+    },
+
+    OnProgress : function(e)
+    {
+        if (e.lengthComputable) {
+          var percentComplete = (e.loaded / e.total) * 100;
+          //console.log(percentComplete + '% uploaded');
+        }
+    },
+
+    OnLoad : function() {
+    },
+
+    ResizeToLarge :function(imageUrl){
+        var indexStartExtension = imageUrl.lastIndexOf('.');
+        var linkFirstPart = imageUrl.substring(0, indexStartExtension);
+
+        var linkExtensionPart = imageUrl.substring(indexStartExtension);
+        var resizedLink = linkFirstPart + "l" + linkExtensionPart;
+        return resizedLink;
+    },
+
+    ShowResult:function(type){
+        var element;
+
+        if(type ==="load")
+            element = "<i class='fa fa-spinner fa-spin' style='font-size:x-large;margin-top:10px;'></i>";
+
+        if(type === "err")
+            element = "<i class='fa fa-exclamation-triangle' style='font-size:x-large;margin-top:10px;'></i>";
+        if(type === "ok")
+            element = "<i class='fa fa-check-square-o' style='font-size:x-large;margin-top:10px;'></i>";
+
+
+        $('#eventUploadResult').html(element);
+    }
+
+}

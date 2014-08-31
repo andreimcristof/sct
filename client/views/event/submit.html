@@ -50,7 +50,9 @@
 		    	<label for="banner" class="col-sm-2 control-label">Banner Image</label>
 		    </div>	
 		    <div>
-		    	<input type="file" class="eventfileUploadControl col-sm-4 control-label" id="imageUrl" name="imageUrl" placeholder="Upload Banner Image" readonly = "readonly">    		
+		    	<input type="hidden" id="bannerUploadResultHidden">
+		    	<input type="file" class="eventfileUploadControl col-sm-4 control-label" id="imageUrl" name="imageUrl" placeholder="Upload Banner Image" readonly = "readonly" onchange="ImgUrlHelper.InitUploadValidateFile(this)" accept="image/*">    		
+		    	<span id="eventUploadResult"></span>
 		    </div>
 		</div>
 

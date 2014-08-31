@@ -15,52 +15,6 @@ Template.upcomingEvents.helpers({
     }
 });
 
-Template.eventSubmit.rendered = function()
-{
-	$(function() {
-    $( "#startDate" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#endDate" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
-    $( "#endDate" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#startDate" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-
-    $('#startTime').timepicker( {
-      controlType: 'select',
-      stepMinute: 15,
-      timeFormat: 'HH:mm'
-    });
-
-    $('#startTime').on('click', function(){
-        if($(this).val() === "")
-          $(this).val("00:00");
-    });
-
-
-
-    $('#endTime').timepicker({
-      controlType: 'select',
-      hourGrid: 4,
-      stepMinute: 15,
-      timeFormat: 'HH:mm'
-    });
-
-    $('#endTime').on('click', function(){
-        if($(this).val() === "")
-          $(this).val("00:00");
-    });
-  });
-}
 
 Template.allEvents.rendered = function()
 {
@@ -104,7 +58,7 @@ function getEventsForDate(pDate) {
   var eventsOnThatDate = Events.find
   (
       {
-        "startDate": {"$lt": pDate}, "endDate": {"$gte": pDate} 
+        "startDate": {"$lte": pDate}, "endDate": {"$gte": pDate} 
       }
   );
        
@@ -119,3 +73,5 @@ Template.selectedEvents.helpers({
       return eventsOnDate;
     }
 });
+
+
