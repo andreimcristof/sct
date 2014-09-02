@@ -9,55 +9,57 @@
 	</div>
 
 	<form class="main">
-		
-		<div class="control-group">
-			<label class="control-label">Server</label>
-				{{> allServers}}
+		<div class="row">
+			<div class="col-md-4">
+				<div class="control-group">
+					<label class="control-label">Server</label>
+						{{> allServers}}
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label" for="bnetid">Battle.net ID</label>
+					<div class="controls">
+						<input name="bnetid" type="text" value="" placeholder="Bnetid" class="form-control"/>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label">Race</label>
+						{{> allRaces}}
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label" for="profileurl">Profile URL</label>
+					<div class="controls">
+						<input name="profileurl" type="text" value="" placeholder="Profile URL" class="form-control"/>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label">League</label>
+						{{> allLeagues}}
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label" for="comment">Comment</label>
+					<div class="controls">
+						<textarea name="comment" value="" placeholder="Comment" class="form-control" rows="5"></textarea>
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" value="Submit" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>	
 		</div>
-
-
-		<div class="control-group">
-			<label class="control-label" for="bnetid">Battle.net ID</label>
-			<div class="controls">
-				<input name="bnetid" type="text" value="" placeholder="Bnetid"/>
-			</div>
-		</div>
-
-
-		<div class="control-group">
-			<label class="control-label">Race</label>
-				{{> allRaces}}
-		</div>
-
-
-		<div class="control-group">
-			<label class="control-label" for="profileurl">Profile URL</label>
-			<div class="controls">
-				<input name="profileurl" type="text" value="" placeholder="Profile URL"/>
-			</div>
-		</div>
-
-
-		<div class="control-group">
-			<label class="control-label">League</label>
-				{{> allLeagues}}
-		</div>
-
-
-		<div class="control-group">
-			<label class="control-label" for="comment">Comment</label>
-			<div class="controls">
-				<textarea name="comment" value="" placeholder="Comment"></textarea>
-			</div>
-		</div>
-
-
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" value="Submit" class="btn btn-primary" />
-			</div>
-		</div>
-
 	</form>
 </template>
 

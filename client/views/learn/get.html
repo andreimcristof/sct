@@ -1,22 +1,22 @@
 <template name="allStrategies">
 
-	<div id="learnFilter" class="container-fluid">
+	<div id="learnFilter">
 						
-				   		<div class="span2">
+				   		<div class="col-md-2">
 							<strong>Filter by Race</strong>
 								{{#each allRaces}}      
 									{{> checkboxListItemLearn}}
 								{{/each}}  
 						</div>
 
-						<div class="span2">
+						<div class="col-md-2">
 							<strong>Best used against</strong>
 								{{#each allBestAgainst}}      
 									{{> checkboxListItemLearnBestAgainst}}
 								{{/each}}  
 						</div>
 
-						<div class="alert alert-info span6">
+						<div class="alert alert-info col-md-8">
 							{{> searchFiltersLearn}}
 						</div>
 

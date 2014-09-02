@@ -23,12 +23,10 @@
 				<a href="{{pathFor 'playpalSubmit'}}" class="btn btn-default btn-sm">Add yourself to list</a>
 			{{/unless}}	
 		</div>
-	
-			<!-- put me in a nice panel -->
 		
-			<div id="playpalFilter" class="container-fluid">
+			<div id="playpalFilter" class="container">
 					
-					<div class="span2">
+					<div class="col-md-2">
 						<strong>Filter by Server</strong>
 							{{#each allServers}}      
 								{{> checkboxListItemPlaypal}}
@@ -36,7 +34,7 @@
 						
 					</div>
 					
-					<div class="span2">
+					<div class="col-md-2">
 						<strong>Filter by League</strong>
 							{{#each allLeagues}}      
 								{{> checkboxListItemPlaypal}}
@@ -44,31 +42,19 @@
 						
 			   		</div>
 
-			   		<div class="span2">
+			   		<div class="col-md-2">
 						<strong>Filter by Race</strong>
 							{{#each allRaces}}      
 								{{> checkboxListItemPlaypal}}
 							{{/each}}  
 					</div>
 
-					<div class="alert alert-info span6">
+					<div class="alert alert-info col-md-6">
 							{{> searchFiltersPlaypal}}
 					</div>
 
 					<div id="resultsVisualizer"></div>
 			</div>
-		
-
-			
-
-		<!--<div>    
-			{{#each allPlaypals}}      
-				{{> playpal}}    
-			{{/each}}  
-		</div> -->
-
-		
-	
 	{{/if}}
 </template>
 	
