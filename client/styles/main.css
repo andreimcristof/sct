@@ -50,3 +50,13 @@ textarea {
     left: 50%;
 
 }
+
+.contactmode {
+  font-size: large;
+}
+
+.contactcontainer{
+  font-size: large;
+  text-align: center;
+  margin-top:20px;
+}
