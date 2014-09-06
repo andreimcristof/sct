@@ -49,12 +49,14 @@ Template.eventSubmit.rendered = function() {
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
+      minDate: 0, 
       onClose: CheckEventClashAndSetStartDate
     });
     $( "#endDate" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
+      
       onClose: CheckEventClashAndSetEndDate
     });
 
@@ -82,18 +84,15 @@ Template.eventSubmit.rendered = function() {
 }
 
 function CheckEventClashAndSetEndDate(selectedDate){
-	
-	var noEventClashOrOverlapConfirmedByUser = CheckEventClashByDate(selectedDate);
-	if(noEventClashOrOverlapConfirmedByUser)
-		
 	$( "#startDate" ).datepicker( "option", "maxDate", selectedDate );
+	
+  CheckEventClashByDate(selectedDate);
 }
 
 function CheckEventClashAndSetStartDate(selectedDate){
-
-	var noEventClashOrOverlapConfirmedByUser = CheckEventClashByDate(selectedDate);
-	if(noEventClashOrOverlapConfirmedByUser)
-    	$( "#endDate" ).datepicker( "option", "minDate", selectedDate );
+  $( "#endDate" ).datepicker( "option", "minDate", selectedDate );
+	
+  CheckEventClashByDate(selectedDate);  	
 }
 
 function CheckEventClashByDate(selectedDate){
@@ -114,7 +113,7 @@ function CheckEventClashByDate(selectedDate){
 
 		var  eventCount = eventsForDate.count();
 		if(eventCount > 0){
-		 	var clashDetailMessage = "The dates you have chosen will overlap with following events:<br/> <strong>"  + eventNames.join(", ") + "</strong>.";
+		 	var clashDetailMessage = "The dates you have chosen will coincide with following events:<br/> <strong>"  + eventNames.join(", ") + "</strong>.";
 		 	ShowClashMessage(clashDetailMessage);
 		}
 	}

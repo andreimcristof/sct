@@ -11,7 +11,7 @@ Template.allEvents.helpers({
 
 Template.upcomingEvents.helpers({  
      upcomingEvents: function() {    
-        return Events.find({}, {limit:10, sort: {startDate: 1 }  }).fetch()
+        return Events.find({"startDate": {"$gte": new Date()}}, {limit:10, sort: {startDate: 1 }  }).fetch()
     }
 });
 
