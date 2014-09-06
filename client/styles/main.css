@@ -60,3 +60,10 @@ textarea {
   text-align: center;
   margin-top:20px;
 }
+
+
+.logoImage{
+  float: left;
+  margin-right: -10px;
+  margin-top: 10px;
+}
