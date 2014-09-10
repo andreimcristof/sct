@@ -20,8 +20,8 @@ Meteor.methods({
 		if(eventAttributes.title.length < 10)
 			throwVisualErrorHint("Your title is too short. Please enter a more descriptive title for the event.");
 
-		if(!eventAttributes.imageUrl)
-			throwVisualErrorHint("Please choose an image banner for your event.");
+		//if(!eventAttributes.imageUrl)
+		//	throwVisualErrorHint("Please choose an image banner for your event.");
 
 		if(!eventAttributes.startDate)
 			throwVisualErrorHint("Please choose the starting date for your event.");
@@ -44,21 +44,39 @@ Meteor.methods({
 		if(eventAttributes.comment.length < 40)
 			throwVisualErrorHint("The comment you entered is too short. Please add more details.");
 
-		var pStartDate = GetDateAndTimeFromPostData(eventAttributes.startDate, eventAttributes.startTime, eventAttributes.timezone);
-		var pEndDate = GetDateAndTimeFromPostData(eventAttributes.endDate, eventAttributes.endTime, eventAttributes.timezone);
+		//start date conversion
+		var pStartDateJson = GetJsonObject(eventAttributes.startDate, eventAttributes.startTime, eventAttributes.timezone);
+		var pEndDateJson = GetJsonObject(eventAttributes.endDate, eventAttributes.endTime, eventAttributes.timezone);
+
+		var pStartDate = GetDateAndTimeFromPostData(pStartDateJson);
+		var pEndDate = GetDateAndTimeFromPostData(pEndDateJson);
+
+		var pStartDateWithoutTime = GetDateWithoutTime(pStartDate);
+		var pEndDateWithoutTime = GetDateWithoutTime(pEndDate);
 
 		var event = _.extend(_.pick(eventAttributes, "title", "imageUrl", "timezone",  "comment", "submitterTwitter" ), {
 			startDate : pStartDate,
 			endDate : pEndDate,
+			startDateJson : JSON.stringify(pStartDateJson),
+			endDateJson : JSON.stringify(pEndDateJson),
+			startDateWithoutTime: pStartDateWithoutTime,
+			endDateWithoutTime: pEndDateWithoutTime,
 			submitted : new Date().getTime(),
 			submitterId: this.userId
 		});
 
+		//do insert
 		var eventId = Events.insert(event);
 
 		return eventId;
 
-		function GetDateAndTimeFromPostData(dt, tm, timezone)
+		function GetDateWithoutTime(pDate)
+		{
+			return moment([pDate.getFullYear(), pDate.getMonth(), pDate.getDate()]).toDate();
+		}
+
+		//helper methods
+		function GetJsonObject(dt, tm, timezone)
 		{
 			var t = tm.split(":");
 			var hour = 	t[0];
@@ -73,8 +91,12 @@ Meteor.methods({
 				Timezone : timezone
 			};
 
-			var utcConverted = ConvertUserTimezoneToServerTimezone(dateJsonObject);
+			return dateJsonObject;
+		}
 
+		function GetDateAndTimeFromPostData(dateJsonObject)
+		{
+			var utcConverted = ConvertUserTimezoneToServerTimezone(dateJsonObject);
 			return utcConverted;
 		}
 

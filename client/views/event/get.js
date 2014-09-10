@@ -58,7 +58,7 @@ function getEventsForDate(pDate) {
   var eventsOnThatDate = Events.find
   (
       {
-        "startDate": {"$lte": pDate}, "endDate": {"$gte": pDate} 
+        "startDateWithoutTime": {"$lte": pDate}, "endDateWithoutTime": {"$gte": pDate} 
       }
   );
        
