@@ -54,7 +54,7 @@ Template.event.destroyed= function(){
 }
 
 function getEventsForDate(pDate) {
-  
+
   var eventsOnThatDate = Events.find
   (
       {

@@ -56,14 +56,15 @@ Template.eventSubmit.rendered = function() {
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
-      
+      minDate: 0,
       onClose: CheckEventClashAndSetEndDate
     });
 
     $('#startTime').timepicker( {
       controlType: 'select',
       stepMinute: 15,
-      timeFormat: 'HH:mm'
+      timeFormat: 'HH:mm',
+      onSelect: SetStartTime
     });
     $('#startTime').on('click', function(){
         if($(this).val() === "")
@@ -72,15 +73,34 @@ Template.eventSubmit.rendered = function() {
 
     $('#endTime').timepicker({
       controlType: 'select',
-      hourGrid: 4,
       stepMinute: 15,
-      timeFormat: 'HH:mm'
+      timeFormat: 'HH:mm',
+      onSelect: SetEndTime
     });
     $('#endTime').on('click', function(){
         if($(this).val() === "")
           $(this).val("00:00");
     });
   });
+}
+
+function SetStartTime(dateTimeText, instance)
+{
+ if(SameDateSelected())
+  $( "#endTime" ).timepicker( "option", "hourMin", instance.hour + 1 );
+}
+
+function SetEndTime(dateTimeText, instance)
+{
+  if(SameDateSelected())
+    $( "#startTime" ).timepicker( "option", "hourMax", instance.hour );
+}
+
+function SameDateSelected()
+{
+  var isSame = $('#startDate').val() === $('#endDate').val();
+  
+  return isSame;
 }
 
 function CheckEventClashAndSetEndDate(selectedDate){

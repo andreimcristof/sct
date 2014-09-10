@@ -47,7 +47,7 @@ Meteor.methods({
 		var pStartDate = GetDateAndTimeFromPostData(eventAttributes.startDate, eventAttributes.startTime, eventAttributes.timezone);
 		var pEndDate = GetDateAndTimeFromPostData(eventAttributes.endDate, eventAttributes.endTime, eventAttributes.timezone);
 
-		var event = _.extend(_.pick(eventAttributes, "title", "imageUrl", /*"startDate", "startTime", "endDate", "endTime",*/ "timezone",  "comment", "submitterTwitter" ), {
+		var event = _.extend(_.pick(eventAttributes, "title", "imageUrl", "timezone",  "comment", "submitterTwitter" ), {
 			startDate : pStartDate,
 			endDate : pEndDate,
 			submitted : new Date().getTime(),
@@ -64,48 +64,24 @@ Meteor.methods({
 			var hour = 	t[0];
 			var min = t[1];
 
-			var finalDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), hour, min);
-			var utcConverted = ConvertUserTimezoneToServerTimezone(finalDate, timezone);
-			var finalDateUTCTimezone = ConvertUTCStringToDateObject(utcConverted);
+			var dateJsonObject = {
+				Year :dt.getFullYear(),
+				Month: dt.getMonth(),
+				Day : dt.getDate(),
+				Hour: hour,
+				Min : min,
+				Timezone : timezone
+			};
 
-			return finalDateUTCTimezone;
+			var utcConverted = ConvertUserTimezoneToServerTimezone(dateJsonObject);
+
+			return utcConverted;
 		}
 
-		function ConvertUTCStringToDateObject(utcConvertedString)
+		function ConvertUserTimezoneToServerTimezone(o)
 		{
-			return moment(utcConvertedString).toDate();
-		}
-
-		function ConvertUserTimezoneToServerTimezone(dateToConvert, tz)
-		{
-			var userTimezonedDate;
-
-			switch(tz)
-			{
-				case "EDT":
-				{
-					userTimezonedDate = moment.tz(dateToConvert, "America/New_York");
-					break;
-				}
-				case "CEST":
-				{
-					userTimezonedDate = moment.tz(dateToConvert, "Europe/Berlin");
-					break;
-				}
-				case "KST":
-				{
-					userTimezonedDate = moment.tz(dateToConvert, "Asia/Seoul");
-					break;
-				}
-				case "CST":
-				{
-					userTimezonedDate = moment.tz(dateToConvert, "Asia/Shanghai");
-					break;
-				}
-			}
-
-			var utcDateFromUserTimezonedDate = userTimezonedDate.toISOString();
-			return utcDateFromUserTimezonedDate;
+			var convertedDate = moment.tz([o.Year,o.Month,o.Day,o.Hour,o.Min],o.Timezone).toDate();
+			return convertedDate;
 		}
 	},
 
@@ -123,3 +99,8 @@ Meteor.methods({
 		return eventsOnThatDate;
 	}
 });
+
+function toTimeZone(time, zone) {
+   	var format = 'YYYY/MM/DD HH:mm:ss ZZ';
+   	return moment(time, format).tz(zone).format(format);
+}

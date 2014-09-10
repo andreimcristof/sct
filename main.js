@@ -30,10 +30,10 @@ if (Meteor.isServer) {
 
     Timezones.remove({});
     if (Timezones.find().count() === 0 ) { 
-        Timezones.insert( { value : "EDT", name :"EDT (Eastern Daylight Time)"} );
-        Timezones.insert( { value : "CEST", name :"CEST (Central European Summer Time)"} );
-        Timezones.insert( { value : "KST", name :"KST (Korea Standard Time"} );
-        Timezones.insert( { value : "CST", name :"CST (China Standard Time"} );
+        Timezones.insert( { value : "America/New_York", name :"EDT (Eastern Daylight Time)"} );
+        Timezones.insert( { value : "Europe/Berlin", name :"CEST (Central European Summer Time)"} );
+        Timezones.insert( { value : "Asia/Seoul", name :"KST (Korea Standard Time"} );
+        Timezones.insert( { value : "Asia/Shanghai", name :"CST (China Standard Time"} );
     }
 
     Bestagainst.remove({});

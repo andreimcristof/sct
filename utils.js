@@ -7,7 +7,8 @@ Handlebars.registerHelper("readableMomentDate", function(pDate) {
 });
 
 Handlebars.registerHelper("toMomentDateAndTime", function(timestamp) {
-	return moment(timestamp).format("dddd, MMMM Do YYYY, hh:mm a");
+    var date = moment(timestamp).format("dddd, MMMM Do YYYY, HH:mm a");
+	return date;
 	;
 });
 
@@ -90,31 +91,8 @@ Handlebars.registerHelper("countDownUntilDate", function(eventStartDate, eventEn
 });
 
 Handlebars.registerHelper("convertUTCDateToReadableFormatInUserTimezone", function(utcDate, timezone) {
-		var userTimezonedDate;
-
-		switch(timezone)
-		{
-			case "EDT":
-			{
-				userTimezonedDate = moment.tz(utcDate, "America/New_York");
-				break;
-			}
-			case "CEST":
-			{
-				userTimezonedDate = moment.tz(utcDate, "Europe/Berlin");
-				break;
-			}
-			case "KST":
-			{
-				userTimezonedDate = moment.tz(utcDate, "Asia/Seoul");
-				break;
-			}
-			case "CST":
-			{
-				userTimezonedDate = moment.tz(utcDate, "Asia/Shanghai");
-				break;
-			}
-		}
+    
+		var userTimezonedDate = moment.tz(utcDate, timezone);
 		return userTimezonedDate.format("dddd, MMMM Do YYYY, HH:mm a");
 });
 
@@ -182,7 +160,6 @@ ImgUrlHelper =
     {
         if (e.lengthComputable) {
           var percentComplete = (e.loaded / e.total) * 100;
-          //console.log(percentComplete + '% uploaded');
         }
     },
 
@@ -213,4 +190,28 @@ ImgUrlHelper =
         $('#eventUploadResult').html(element);
     }
 
+}
+
+if ( !Date.prototype.toISOString ) {
+  ( function() {
+    
+    function pad(number) {
+      if ( number < 10 ) {
+        return '0' + number;
+      }
+      return number;
+    }
+ 
+    Date.prototype.toISOString = function() {
+      return this.getUTCFullYear() +
+        '-' + pad( this.getUTCMonth() + 1 ) +
+        '-' + pad( this.getUTCDate() ) +
+        'T' + pad( this.getUTCHours() ) +
+        ':' + pad( this.getUTCMinutes() ) +
+        ':' + pad( this.getUTCSeconds() ) +
+        '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
+        'Z';
+    };
+  
+  }() );
 }
