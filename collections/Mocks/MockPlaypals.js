@@ -1,6 +1,7 @@
 InsertMockPlaypals = function()
 {
-	
+	 if (Playpals.find().count() > 0 )
+	 	return;
 	
 	Playpals.insert({
 	"bnetid":"Andrei.374", 

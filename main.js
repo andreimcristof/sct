@@ -10,7 +10,7 @@ if (Meteor.isServer) {
     //Events.remove({});
     //InsertMockEvents();
     
-    Playpals.remove({});
+    //Playpals.remove({});
     InsertMockPlaypals();
 
     //end mocks
@@ -69,6 +69,13 @@ if (Meteor.isServer) {
     //rights
     Playpals.allow({
     update: function (userId, playpal) {
+      if(playpal.userId == Meteor.userId())
+        return true;
+      else
+        return false;
+      },
+      
+    remove: function (userId, playpal) {
       if(playpal.userId == Meteor.userId())
         return true;
       else

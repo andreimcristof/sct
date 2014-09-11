@@ -9,12 +9,13 @@
 	</div>
 	
 	{{#if currentUser}}
-		<div class="alert alert-info">
+		<div class="alert alert-info playpalOwnContainer">
 		<h3>Your profile</h3>
 			{{#with ownPlaypal}} 
 				{{> playpal}}    
 				
 					<a href="{{pathFor 'playpalEdit'}}" class="btn btn-default btn-sm">Modify your profile</a>
+					<a id="btnRemoveMyPlaypalProfile" class="btn btn-default btn-sm">Remove your profile</a>
 				
 			{{/with}} 
 

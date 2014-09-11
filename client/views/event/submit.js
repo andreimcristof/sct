@@ -41,7 +41,12 @@ Template.allTimezones.helpers({
 });
 
 
-
+Template.eventSubmit.destroyed = function() {
+  if(Errors.find().count() > 0)
+    {
+      Errors.remove({});
+    }
+};
 
 Template.eventSubmit.rendered = function() {
 	$(function() {

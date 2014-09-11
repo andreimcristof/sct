@@ -21,6 +21,53 @@ Template.allPlaypals.helpers({
 		}
 });
 
+Template.allPlaypals.events({  
+	 'click #btnRemoveMyPlaypalProfile' : function(e)
+	 {
+	 	e.preventDefault();
+	 	var msg = "Are you sure? Other players will no longer be able to find you. However, you can add yourself again later to the list.";
+	 	ConfirmMyPlaypalDeletion(msg);
+	 }
+});
+
+function ConfirmMyPlaypalDeletion(msg){
+
+  bootbox.dialog({
+  message: "<i class='fa fa-warning fa-6' style='font-size:xx-large;float:left;margin-right:20px;'></i>" + msg,
+  title: "Warning",
+  buttons: {
+    
+    danger: {
+      label: "No, I changed my mind",
+      className: "btn-danger",
+      callback: function() {
+      	
+      }
+    },
+    main: {
+      label: "Yes, I'm sure",
+      className: "btn-primary",
+      callback: function() {
+     	 RemoveMyPlaypal();  
+      }
+    }
+  }
+});
+}
+
+function RemoveMyPlaypal()
+{
+	Meteor.call('deleteMyPlaypal', function(error, id){
+			if(error)
+			{
+				console.log(error);
+				return;
+			}
+			
+			RerenderPlaypalGraphicAfterFilterChange();
+			//Router.go('allPlaypals');	
+		});
+}
 
 
 Template.allPlaypals.rendered = function()
@@ -136,4 +183,3 @@ function BuildFilterPlaypal(templateResult, prop)
 		return filter;
 	}
 }
-

@@ -1,14 +1,20 @@
 <template name="errors">  
-	<div>    
+	{{#if errors.count}} 
+	<div class="pageErrorsExpanded">    
 		{{#each errors}}      
 			{{> error}}    
 		{{/each}}  
 	</div> 
+	{{else}} 
+	<div class="pageErrorsCollapsed">
+	</div>    
+
+	{{/if}} 
 </template>
 
 <template name="error">  
-	<div class="bg-warning">    
+	<div class="alert alert-warning">    
 		<button type="button" class="close" data-dismiss="alert">&times;</button>    
-			{{message}}  
+			<i class='fa fa-exclamation-triangle' style='font-size:normal;'></i> {{message}}  
 	</div> 
 </template>

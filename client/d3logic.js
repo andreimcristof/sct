@@ -7,8 +7,38 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	function bnetid(d) { return d.bnetid; }
 	function profileurl(d) { return d.profileurl; }
 
-	var color = d3.scale.category10();
-	function colorByRace(d) { return color(race(d)); }
+//protoss 9c893d
+//terran 344bbb
+//zerg ba66be
+
+var RaceColors = 
+{
+	Terran: "#344bbb",
+	Zerg: "#ba66be",
+	Protoss: "#e7cb4e"
+}
+
+	//var color = d3.scale.ordinal().range(["#9c893d", "#344bbb", "#ba66be"]);
+	function colorByRace(d) { 
+
+		var color = "#fff";
+
+		switch(d.race)
+		{
+			case "Terran":
+				color = RaceColors.Terran;
+			break;
+
+			case "Protoss":
+				color= RaceColors.Protoss;
+			break;
+
+			case "Zerg":
+				color= RaceColors.Zerg;
+			break;
+		}
+		return color;
+	}
 
 	var width = 960,
 	    height = 500;
@@ -70,29 +100,62 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 
 	    node = svg.selectAll('.nodePlaypal')
 	        .data( data )
-	      	.enter().append('g')
-	        .attr('class', 'nodePlaypal')
-	        .attr('server', server)
-	        .attr('bnetid', bnetid)
-	        .attr('league', league)
-	        .attr('race', race)
-	        .attr('profileurl', profileurl)
+	      	.enter()
+	      		.append('g')
+	        		.attr('class', 'nodePlaypal')
+			        .attr('server', server)
+	    		    .attr('bnetid', bnetid)
+	        		.attr('league', league)
+	        		.attr('race', race)
+	        		.attr('profileurl', profileurl)
+				
 	        .call( force.drag )
 	        .on("mouseover", playpalNodeHoverCallback)
 
 	    node.append('circle')
-	        .attr('r', 30)
-	        .attr('fill', colorByRace)
-	        .attr('fill-opacity', 0.5);
+		        .attr('r', 30)
+	        	.attr('fill', colorByRace)
+		        .attr('fill-opacity', 1)			
+	     
+	     node.append("image")
+    		.attr("xlink:href", function(d){ return imageByRace(d);})			
+	       	.attr("x", -15)
+      		.attr("y", -15)
+      		.attr("width", 30)
+      		.attr("height", 30) 
+        
+         //node.append("span")
+         //	.text(function(d) { return d.bnetid;})
 
-	    node.append('circle')
-	        .attr('r', 4)
-	        .attr('stroke', 'black');
+         node.append("text")
+      		.attr("x", -25)
+      		.attr('class', 'nodePlaypalText')
+      		.attr("y", 40)
+      .text(function(d) { return d.bnetid });
 
 	    force
 	        .nodes( data )
-	       	// .links( data.links )
 	        .start();
+
+
+	function imageByRace(d)
+	{
+		var imageSrc = "";
+		
+		switch(d.race)
+		{
+			case "Terran":
+			imageSrc = "images/Ticon_small.png";
+			break;
+			case "Protoss":
+			imageSrc = "images/Picon_small.png";
+			break;
+			case "Zerg":
+			imageSrc = "images/Zicon_small.png";
+			break;
+		}
+		return imageSrc;
+	}
 
 	function playpalNodeHoverCallback(data,index)
 	{ 

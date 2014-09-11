@@ -85,6 +85,6 @@ Template.searchFiltersPlaypal.events({
 		e.preventDefault();
 
 		SearchFiltersPlaypal.remove({});
-		$('.checkboxListItem').prop('checked', false);
+		$('.checkboxListItemPlaypal').prop('checked', false);
 	}
 });

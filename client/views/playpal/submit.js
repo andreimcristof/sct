@@ -45,3 +45,11 @@ Template.playpalSubmit.events({
 		});
 	}
 });
+
+
+Template.playpalSubmit.destroyed = function() {
+  if(Errors.find().count() > 0)
+		{
+			Errors.remove({});
+		}
+};

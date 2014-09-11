@@ -44,8 +44,12 @@
 			</div>	
 		</nav>
 		
-		{{> errors}} 
 		<div id="main" class="row-fluid">
+			<div class="row">
+				<div class="md-col-12">
+					{{> errors}} 
+				</div>
+			</div>
 			{{> yield}}
 		</div>
 

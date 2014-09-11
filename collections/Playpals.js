@@ -21,6 +21,11 @@ Playpals = new Meteor.Collection("playpals");
 
 
 Meteor.methods({
+	deleteMyPlaypal:function()
+	{
+		Playpals.remove({"submitter":this.userId });
+	},
+
 	postPlaypal:function(playpalAttributes){
 
 		var user = Meteor.user();
