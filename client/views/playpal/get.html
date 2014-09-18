@@ -26,35 +26,70 @@
 		</div>
 		
 			<div id="playpalFilter" class="container">
-					
-					<div class="col-md-2">
-						<strong>Filter by Server</strong>
-							{{#each allServers}}      
-								{{> checkboxListItemPlaypal}}
-							{{/each}}  
+					<div class="row">
+						<div class="col-md-2">
+							<strong>Filter by Server</strong>
+								{{#each allServers}}      
+									{{> checkboxListItemPlaypal}}
+								{{/each}}  
+							
+						</div>
 						
+						<div class="col-md-2">
+							<strong>Filter by League</strong>
+								{{#each allLeagues}}      
+									{{> checkboxListItemPlaypal}}
+								{{/each}}  
+							
+				   		</div>
+
+				   		<div class="col-md-2">
+							<strong>Filter by Race</strong>
+								{{#each allRaces}}      
+									{{> checkboxListItemPlaypal}}
+								{{/each}}  
+						</div>
+
+						<div class="alert alert-info col-md-6">
+								{{> searchFiltersPlaypal}}
+						</div>
+					</div>	
+
+					<div class="row alert alert-info">
+						<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<div class="row playpalTimeSelectorContainer">
+									<div class="col-md-1">
+										<i class="btnBackwardMonth fa fa-chevron-left"></i>
+									</div>
+									<div class="col-md-8 text-center">
+										<div class="monthSelectorContainer">
+											<input id="playpalMonthSelector" type="text" readonly="readonly" />
+											
+											Players registered in 
+											<label id="monthYearSelected"></label>
+										</div>		
+									</div>
+									<div class="col-md-1">
+										<i class="btnForwardMonth fa fa-chevron-right"></i>
+									</div>
+								</div>
+							</div>
+						<div class="col-md-2"></div>
 					</div>
+
 					
-					<div class="col-md-2">
-						<strong>Filter by League</strong>
-							{{#each allLeagues}}      
-								{{> checkboxListItemPlaypal}}
-							{{/each}}  
-						
-			   		</div>
-
-			   		<div class="col-md-2">
-						<strong>Filter by Race</strong>
-							{{#each allRaces}}      
-								{{> checkboxListItemPlaypal}}
-							{{/each}}  
+					<div class="row">
+						<div class="col-md-2 text-center">
+							<!--<i class="btnBackwardLimit fa fa-caret-left"></i>-->
+						</div>
+						<div class="col-md-8">
+							<div id="resultsVisualizer"></div>
+						</div>
+						<div class="col-md-2 text-center">
+							<!--<i class="btnForwardLimit fa fa-caret-right"></i>-->
+						</div>
 					</div>
-
-					<div class="alert alert-info col-md-6">
-							{{> searchFiltersPlaypal}}
-					</div>
-
-					<div id="resultsVisualizer"></div>
 			</div>
 	{{/if}}
 </template>

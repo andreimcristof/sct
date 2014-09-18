@@ -10,12 +10,10 @@ if (Meteor.isServer) {
     //Events.remove({});
     //InsertMockEvents();
     
-    //Playpals.remove({});
+    Playpals.remove({});
     InsertMockPlaypals();
 
     //end mocks
-
-
 
     //prefill constants
     Strategies.remove({});
@@ -88,10 +86,22 @@ if (Meteor.isServer) {
       return Players.find(); 
     });
 
-
-    Meteor.publish("allPlaypals", function () {
-      return Playpals.find(); 
+    Meteor.publish("allPlaypals", function (pDate) {
+      
+      var dateFilter = GetWholeMonthFilterFromDate(pDate);      
+      return Playpals.find(dateFilter); 
     });
+
+    function GetWholeMonthFilterFromDate(pDate){
+      var firstDayOfMonth = new Date(pDate.getFullYear(), pDate.getMonth(), 1);
+      var lastDayOfMonth = new Date(pDate.getFullYear(), pDate.getMonth() + 1, 0);
+
+      var dateFilter = 
+      {
+        "submitted": {"$gte": firstDayOfMonth, "$lte": lastDayOfMonth} 
+      };
+      return dateFilter;
+    }
     
 
     Meteor.publish("allStrategies", function () {
@@ -135,16 +145,38 @@ if (Meteor.isServer) {
 
 
 if (Meteor.isClient) {
-  Meteor.subscribe("ownPlaypal");
+  
+  var SubscriberHelper =
+  {
+    SubscribeToConstantCollections:function(){
+      Meteor.subscribe("allTimezones");    
+      Meteor.subscribe("allRaces");
+      Meteor.subscribe("allBestAgainst");
+      Meteor.subscribe("allLeagues");
+      Meteor.subscribe("allServers");
+    },
 
-  //Meteor.subscribe("allPlayers");
-  Meteor.subscribe("allPlaypals");
-  Meteor.subscribe("allRaces");
-  Meteor.subscribe("allBestAgainst");
-  Meteor.subscribe("allLeagues");
-  Meteor.subscribe("allServers");
-  Meteor.subscribe("allStrategies");
-  Meteor.subscribe("allEvents");
-  Meteor.subscribe("allTimezones");
+    SubscribeToDynamicCollections:function(){
+      //Meteor.subscribe("allPlaypals");
+      Meteor.subscribe("allStrategies");
+      Meteor.subscribe("allEvents");  
+    }
+  };
+
+  SubscriberHelper.SubscribeToConstantCollections();
+  SubscriberHelper.SubscribeToDynamicCollections();
+
+  var allPlaypalsHandle;
+
+  Meteor.startup(function(){
+    Deps.autorun(function(){
+      //if(allPlaypalsHandle) 
+      //  allPlaypalsHandle.stop();
+
+      allPlaypalsHandle = Meteor.subscribe('allPlaypals',Session.get("selectedPlaypalDate"));
+    })
+
+    Session.set("selectedPlaypalDate",moment().utc().toDate());
+  });
+
 }
-

@@ -40,8 +40,8 @@ var RaceColors =
 		return color;
 	}
 
-	var width = 960,
-	    height = 500;
+	var width = 860,
+	    height = 300;
 
 	var svg = d3.select('#resultsVisualizer')
 	    .append('svg')

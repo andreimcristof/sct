@@ -26,6 +26,7 @@ Meteor.methods({
 		Playpals.remove({"submitter":this.userId });
 	},
 
+	
 	postPlaypal:function(playpalAttributes){
 
 		var user = Meteor.user();
@@ -42,15 +43,16 @@ Meteor.methods({
 		if(!playpalAttributes.profileurl)
 			throwVisualErrorHint("Please enter a Battle.net URL");
 
-		//if(playpalAttributes.profileurl && !IsProperBNetURL(playpalAttributes.profileurl))
-		//	throwVisualErrorHint("The URL you entered is not a Battle.net URL");
+		if(playpalAttributes.profileurl && !IsProperBNetURL(playpalAttributes.profileurl))
+			throwVisualErrorHint("The URL you entered is not a Battle.net URL");
 
 		if(!playpalAttributes.comment)
 			throwVisualErrorHint("Please enter a short description in the comment field.");
 
 		var playpal = _.extend(_.pick(playpalAttributes, "server", "bnetid", "race", "profileurl", "league", "comment", "submitted"), {
 			userId : user._id,
-			submitter: this.userId
+			submitter: this.userId,
+			submitted: moment().utc().toDate()
 		});
 
 		var playpalId = Playpals.insert(playpal);

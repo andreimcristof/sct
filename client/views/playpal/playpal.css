@@ -1,3 +1,40 @@
 .playpalOwnContainer{
 	font-size: x-small;
 }
+
+#playpalMonthSelector{
+	display:none;
+}
+
+.playpalTimeSelectorContainer{
+	font-size: x-large;
+}
+
+.btnBackwardMonth:hover,
+.btnForwardMonth:hover,
+.btnBackwardLimit:active,
+.btnForwardLimit:active{
+	color:gray;
+}
+
+.btnBackwardMonth:active,
+.btnForwardMonth:active,
+.btnBackwardLimit:active,
+.btnForwardLimit:active{
+	color:lightgray;
+}
+
+.btnBackwardMonth,
+.btnForwardMonth{
+	font-size: xx-large;
+}
+
+.monthSelectorContainer{
+	display:inline-block;
+}
+
+.btnBackwardLimit,
+.btnForwardLimit{
+	font-size: 140px;
+	display:none;
+}

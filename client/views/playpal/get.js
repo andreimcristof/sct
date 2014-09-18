@@ -15,7 +15,6 @@ Template.allPlaypals.helpers({
 			return Leagues.find();
 		},
 
-
 		allRaces: function() {
 			return Races.find();
 		}
@@ -58,22 +57,73 @@ function ConfirmMyPlaypalDeletion(msg){
 function RemoveMyPlaypal()
 {
 	Meteor.call('deleteMyPlaypal', function(error, id){
-			if(error)
-			{
-				console.log(error);
-				return;
-			}
-			
-			RerenderPlaypalGraphicAfterFilterChange();
-			//Router.go('allPlaypals');	
-		});
+		if(error)
+		{
+			console.log(error);
+			return;
+		}
+		
+		RerenderPlaypalGraphicAfterFilterChange();
+	});
 }
 
 
 Template.allPlaypals.rendered = function()
 {
+	RenderDatePickerFunctionality();
 	RerenderPlaypalGraphicAfterFilterChange();
 	InitializeTooltipForNodes();
+
+	Deps.autorun(function(){
+		var reactiveSession = Playpals.find();
+		{
+			RerenderPlaypalGraphicAfterFilterChange();
+			InitializeTooltipForNodes();			
+		}
+	})
+}
+
+function RenderDatePickerFunctionality(){
+	$('#playpalMonthSelector').datepicker( {
+        changeMonth: true,
+        changeYear: false,
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst) { 
+        },
+        onSelect: function(dateText, inst){
+        },
+        onChangeMonthYear: function(year, month, inst){
+   		  var newDate = new Date(year, month-1, 1);
+   		  $(this).datepicker( "setDate",  newDate);
+   		  RenderMonthYearInContainer(newDate);
+  		}
+    });
+	
+    var today= new Date();
+    var newDate = new Date(today.getFullYear(), today.getMonth(), 1);
+   	$('#playpalMonthSelector').datepicker( "setDate",  newDate);
+   	 RenderMonthYearInContainer(newDate);
+
+    $('.btnForwardMonth').on('click', function(e){
+    	$('#ui-datepicker-div').find('.ui-datepicker-next').click();
+		GetNewPlaypalsFromGivenDate();
+    });
+		
+	$('.btnBackwardMonth').on('click', function(e){
+    	$('#ui-datepicker-div').find('.ui-datepicker-prev').click();
+    	GetNewPlaypalsFromGivenDate();
+    });
+
+    function RenderMonthYearInContainer(pDate){
+		var monthWithYear = moment(pDate).format('MMMM YYYY');     
+	    $('#monthYearSelected').text(monthWithYear);
+	}
+}
+
+function GetNewPlaypalsFromGivenDate(){
+	var selectedDate = new Date($('#playpalMonthSelector').datepicker()[0].value);
+	 Session.set("selectedPlaypalDate", selectedDate);
 }
 
 Meteor.autosubscribe(function()
@@ -89,21 +139,25 @@ Meteor.autosubscribe(function()
 		{
 			RerenderPlaypalGraphicAfterFilterChange();
 			InitializeTooltipForNodes();
-		},
+		}
 	})
 })
+
 
 function RerenderPlaypalGraphicAfterFilterChange()
 {
 	var GetSearchFilterPlaypal = function()
 	{
 		var filter = GetCumulatedFilterFromUserSelection();
-		var	dataAllPlaypals  = JSON.stringify(Template.allPlaypals.allPlaypals(filter).fetch());
-		return dataAllPlaypals;	
+		var	data  =  Template.allPlaypals.allPlaypals(filter).fetch();
+		//console.log(data)
+		//console.log(Session.get("selectedPlaypalDate"))
+		var dataAllPlaypalsForSelectedMonth = JSON.stringify(data);
+		return dataAllPlaypalsForSelectedMonth;	
 	}
 
 	var filterData = GetSearchFilterPlaypal();
-	
+
 	$('#resultsVisualizer').empty();
 	RenderPlaypalD3(filterData);
 }

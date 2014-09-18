@@ -29,7 +29,6 @@ Template.playpalSubmit.events({
 			profileurl: $(e.target).find('[name=profileurl]').val(),
 			league: $('#leagues').val(),
 			comment: $(e.target).find('[name=comment]').val(),
-			submitted : new Date().getTime()
 		}
 
 
