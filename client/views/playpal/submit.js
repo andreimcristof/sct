@@ -28,7 +28,7 @@ Template.playpalSubmit.events({
 			race: $('#races').val(),
 			profileurl: $(e.target).find('[name=profileurl]').val(),
 			league: $('#leagues').val(),
-			comment: $(e.target).find('[name=comment]').val(),
+			comment: $(e.target).find('[name=comment]').val()
 		}
 
 

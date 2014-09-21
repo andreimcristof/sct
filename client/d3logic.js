@@ -7,18 +7,17 @@ RenderPlaypalD3 = function(dataAllPlaypals) {
 	function bnetid(d) { return d.bnetid; }
 	function profileurl(d) { return d.profileurl; }
 
-//protoss 9c893d
-//terran 344bbb
-//zerg ba66be
+	//protoss 9c893d
+	//terran 344bbb
+	//zerg ba66be
 
-var RaceColors = 
-{
-	Terran: "#344bbb",
-	Zerg: "#ba66be",
-	Protoss: "#e7cb4e"
-}
+	var RaceColors = 
+	{
+		Terran: "#344bbb",
+		Zerg: "#ba66be",
+		Protoss: "#e7cb4e"
+	}
 
-	//var color = d3.scale.ordinal().range(["#9c893d", "#344bbb", "#ba66be"]);
 	function colorByRace(d) { 
 
 		var color = "#fff";
@@ -103,11 +102,11 @@ var RaceColors =
 	      	.enter()
 	      		.append('g')
 	        		.attr('class', 'nodePlaypal')
-			        .attr('server', server)
+			       /* .attr('server', server)
 	    		    .attr('bnetid', bnetid)
 	        		.attr('league', league)
 	        		.attr('race', race)
-	        		.attr('profileurl', profileurl)
+	        		.attr('profileurl', profileurl)*/
 				
 	        .call( force.drag )
 	        .on("mouseover", playpalNodeHoverCallback)

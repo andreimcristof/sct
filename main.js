@@ -10,7 +10,7 @@ if (Meteor.isServer) {
     //Events.remove({});
     //InsertMockEvents();
     
-    Playpals.remove({});
+    //Playpals.remove({});
     InsertMockPlaypals();
 
     //end mocks
@@ -87,9 +87,16 @@ if (Meteor.isServer) {
     });
 
     Meteor.publish("allPlaypals", function (pDate) {
-      
-      var dateFilter = GetWholeMonthFilterFromDate(pDate);      
-      return Playpals.find(dateFilter); 
+        if(pDate == null)
+        {
+          pDate = moment().utc().toDate();
+        }
+
+        var dateFilter = GetWholeMonthFilterFromDate(pDate);   
+        var isOwnPlaypal = {"submitter":this.userId };   
+        var byDateOrSelfFilter = { $or: [dateFilter, isOwnPlaypal]};
+        return Playpals.find(byDateOrSelfFilter);   
+
     });
 
     function GetWholeMonthFilterFromDate(pDate){
@@ -157,7 +164,6 @@ if (Meteor.isClient) {
     },
 
     SubscribeToDynamicCollections:function(){
-      //Meteor.subscribe("allPlaypals");
       Meteor.subscribe("allStrategies");
       Meteor.subscribe("allEvents");  
     }
@@ -170,8 +176,8 @@ if (Meteor.isClient) {
 
   Meteor.startup(function(){
     Deps.autorun(function(){
-      //if(allPlaypalsHandle) 
-      //  allPlaypalsHandle.stop();
+      if(allPlaypalsHandle) 
+        allPlaypalsHandle.stop();
 
       allPlaypalsHandle = Meteor.subscribe('allPlaypals',Session.get("selectedPlaypalDate"));
     })

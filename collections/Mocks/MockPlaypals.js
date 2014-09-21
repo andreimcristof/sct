@@ -12,6 +12,7 @@ InsertMockPlaypals = function()
 	"server" :"Korea",
 	"submitted" :  moment("2014-09-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -24,6 +25,7 @@ InsertMockPlaypals = function()
 	"server" :"Europe",
 	"submitted" :  moment("2014-09-10").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -39,6 +41,7 @@ InsertMockPlaypals = function()
 	"server" :"Korea",
 	"submitted" :  moment("2014-05-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -51,6 +54,7 @@ Playpals.insert({
 	"server" :"Korea",
 	"submitted" :  moment("2014-06-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -64,6 +68,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-03-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -76,6 +81,7 @@ Playpals.insert({
 	"server" :"North America",
 	"submitted" :  moment("2014-04-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -88,6 +94,7 @@ Playpals.insert({
 	"server" :"South-East Asia",
 	"submitted" :  moment("2014-02-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -100,6 +107,7 @@ Playpals.insert({
 	"server" :"South-East Asia",
 	"submitted" :  moment("2014-01-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -112,6 +120,7 @@ Playpals.insert({
 	"server" :"South-East Asia",
 	"submitted" :  moment("2014-06-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -124,6 +133,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-03-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -136,6 +146,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-03-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -148,6 +159,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-02-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -160,6 +172,7 @@ Playpals.insert({
 	"server" :"North America",
 	"submitted" :  moment("2014-02-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -173,6 +186,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-03-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 
@@ -185,6 +199,7 @@ Playpals.insert({
 	"server" :"Europe",
 	"submitted" :  moment("2014-02-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 Playpals.insert({
@@ -196,6 +211,7 @@ Playpals.insert({
 	"server" :"North America",
 	"submitted" :  moment("2014-02-08").utc().toDate(),
 	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
 }

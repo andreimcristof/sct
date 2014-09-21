@@ -10,6 +10,7 @@ Playpals:
 - Comment
 - Submitted
 - Submitter 
+- submitterTwitter
 */
 
 
@@ -51,8 +52,9 @@ Meteor.methods({
 
 		var playpal = _.extend(_.pick(playpalAttributes, "server", "bnetid", "race", "profileurl", "league", "comment", "submitted"), {
 			userId : user._id,
+			submitted: moment().utc().toDate(),
 			submitter: this.userId,
-			submitted: moment().utc().toDate()
+			submitterTwitter: Meteor.user().profile.name
 		});
 
 		var playpalId = Playpals.insert(playpal);

@@ -4,6 +4,16 @@ Template.playpalEdit.events({
 
 		var currentPlaypalId = this._id;
 
+/*		var playpalProperties = 
+		{
+			server: $('#servers').val(),
+			bnetid: $(e.target).find('[name=bnetid]').val(),
+			race: $('#races').val(),
+			profileurl: $(e.target).find('[name=profileurl]').val(),
+			league: $('#leagues').val(),
+			comment: $(e.target).find('[name=comment]').val()
+		}*/
+
 		var playpalProperties = 
 		{
 			server: $('#servers').val(),
@@ -11,8 +21,7 @@ Template.playpalEdit.events({
 			race: $('#races').val(),
 			profileurl: $(e.target).find('[name=profileurl]').val(),
 			league: $('#leagues').val(),
-			comment: $(e.target).find('[name=comment]').val(),
-			submitted : new Date().getTime()
+			comment: $(e.target).find('[name=comment]').val()
 		}
 
 		Playpals.update(currentPlaypalId,{ $set:playpalProperties}, function(error){

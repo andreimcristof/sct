@@ -1,19 +1,57 @@
 <template name="playpal">
-	<div>
-		<p>
-			<strong>
-				<a href="{{pathFor 'playpal'}}">BnetID: {{bnetid}}</a>
-			</strong>
-		</p>
-		<p>Server: {{server}}</p>
-		<p>Race: {{race}}</p>
-		<p>Profile: {{profileurl}}</p>
-		<p>League: {{league}}</p>
-		<p>Comment: {{comment}}</p>
-		<p>Date Added: {{readableDate submitted}}</p>
-
+<div class="page-header">
+			<h1>
+				<small>
+					
+				</small>
+			</h1>
 		
 	</div>
-	<br/>
+
+<div class="row">
+
+
+<dl class="dl-horizontal">
+  <dt>Battle.Net URL</dt>
+  <dd>{{bnetid}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Server</dt>
+  <dd>{{server}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Race</dt>
+  <dd>{{race}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Battle.net profile</dt>
+  <dd><a href="{{profileurl}}" target="_blank">Click to see profile</a></dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Race</dt>
+  <dd>{{race}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>League</dt>
+  <dd>{{league}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Comment from player</dt>
+  <dd>{{comment}}</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>Registered On</dt>
+  <dd>{{readableDate submitted}}</dd>
+</dl>
+	<dl class="dl-horizontal">
+  <dt>Player ID</dt>
+  <dd>{{submitterTwitter}}</dd>
+</dl>	
+		
+		
+		
+	
+	
+	</div>
 </template>
 

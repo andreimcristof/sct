@@ -67,20 +67,24 @@ function RemoveMyPlaypal()
 	});
 }
 
-
+Template.allPlaypals.destroyed = function(){
+	if(ReactiveMonthTrigger)
+		ReactiveMonthTrigger.stop();
+}
 Template.allPlaypals.rendered = function()
 {
 	RenderDatePickerFunctionality();
-	RerenderPlaypalGraphicAfterFilterChange();
-	InitializeTooltipForNodes();
+	ActivateReactiveTriggerOnMonthChange();
+}
 
-	Deps.autorun(function(){
-		var reactiveSession = Playpals.find();
-		{
-			RerenderPlaypalGraphicAfterFilterChange();
-			InitializeTooltipForNodes();			
-		}
-	})
+
+var ReactiveMonthTrigger;
+function ActivateReactiveTriggerOnMonthChange(){
+	ReactiveMonthTrigger = Deps.autorun(function(){
+		Playpals.find();
+		RerenderPlaypalGraphicAfterFilterChange();
+		InitializeTooltipForNodes();			
+	});
 }
 
 function RenderDatePickerFunctionality(){
@@ -149,17 +153,39 @@ function RerenderPlaypalGraphicAfterFilterChange()
 	var GetSearchFilterPlaypal = function()
 	{
 		var filter = GetCumulatedFilterFromUserSelection();
-		var	data  =  Template.allPlaypals.allPlaypals(filter).fetch();
-		//console.log(data)
-		//console.log(Session.get("selectedPlaypalDate"))
+		var selectedDate = $('#playpalMonthSelector').datepicker()[0];
+		var data = Template.allPlaypals.allPlaypals(filter).fetch();
+		
+		if(typeof selectedDate !== "undefined")
+		{
+			var pDate = new Date(selectedDate.value);
+			var thisMonth = pDate.getMonth();
+			var thisYear = pDate.getFullYear();
+			var ownPlaypal = Template.allPlaypals.ownPlaypal();
+			if(typeof ownPlaypal !== "undefined")
+			{
+				var ownPlaypalMonth = ownPlaypal.submitted.getMonth();
+				var ownPlaypalYear = ownPlaypal.submitted.getFullYear();
+				var needsRemoval = ((thisYear !== ownPlaypalYear) || (thisYear === ownPlaypalYear &&thisMonth !== ownPlaypalMonth));
+
+				if(!needsRemoval)
+					data =  Template.allPlaypals.allPlaypals(filter).fetch();
+				else
+				{
+					var removeOwnFilter = {"submitter": {$not:Meteor.userId()}}; 
+					var withoutOwnPlaypalFilter = {$and: [filter, removeOwnFilter]}
+					data =  Template.allPlaypals.allPlaypals(withoutOwnPlaypalFilter).fetch();
+				}
+			}
+		}
 		var dataAllPlaypalsForSelectedMonth = JSON.stringify(data);
 		return dataAllPlaypalsForSelectedMonth;	
 	}
 
-	var filterData = GetSearchFilterPlaypal();
+	var filteredData = GetSearchFilterPlaypal();
 
 	$('#resultsVisualizer').empty();
-	RenderPlaypalD3(filterData);
+	RenderPlaypalD3(filteredData);
 }
 
 var InitializeTooltipForNodes  = function()
@@ -169,18 +195,23 @@ var InitializeTooltipForNodes  = function()
 			content:
 			{
 				text: "<div> \
-					<h5>BattleNet ID: " + $(this).attr("bnetid") + "</h5> \
-					<strong><a href='" + $(this).attr("profileurl") + "' target='_new'>Profile Link</a></strong> \
+					<h5>BattleNet ID: " + d3.select(this)[0][0].__data__.bnetid + "</h5> \
+					<strong><a href='" + d3.select(this)[0][0].__data__.profileurl + "' target='_blank'>See BattleNet profile</a></strong> \
 					<br /><br /> \
-					Server: <strong>" + $(this).attr("server") + "</strong> \
+					Server: <strong>" + d3.select(this)[0][0].__data__.server + "</strong> \
 					<br /><br /> \
-					League: <strong>" + $(this).attr("league") + "</strong> \
+					League: <strong>" + d3.select(this)[0][0].__data__.league + "</strong> \
 					<br /><br /> \
-					Race: <strong>" + $(this).attr("race") + "</strong> \
+					Race: <strong>" + d3.select(this)[0][0].__data__.race + "</strong> \
+					<br /><br /> \
+					<strong><a href='/playpal/" + d3.select(this)[0][0].__data__._id + "' target='_blank'>Contact player</a></strong> \
 					<br /><br /> \
 					</div>" 
 			},
-			style: {height: 140, width: 200, classes: 'qtip-pos-bc qtip qtip-blue qtip-rounded qtip-shadow'},
+			style: {height: 170, width: 200, classes: 'qtip-pos-rt qtip qtip-blue qtip-rounded qtip-shadow'},
+			  position: {
+			        viewport: $(window)
+			    },
 			show: { delay: 0 },
 			hide: { delay: 200, fixed : true }
 		});
@@ -226,8 +257,6 @@ function BuildFilterPlaypal(templateResult, prop)
 	var jsonResult = ({$or : filterArr});
 	return jsonResult;
 
-
-	//helper function 
 	function RemoveAllElementInCaseItExists(filter)
 	{
 		var allIndex = filter.indexOf("all");
