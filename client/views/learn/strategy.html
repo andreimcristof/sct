@@ -1,0 +1,35 @@
+<template name="strategy">
+<div class="page-header">
+			<h1>
+				<small>
+					Strategy: <strong>{{name}}</strong>
+				</small>
+			</h1>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-hover text-center">
+ 				<thead></thead>
+ 				<tbody>
+
+ 				 	<tr class="bigRow">
+ 				 		<td><strong>For Race: </strong> {{race}}</td>
+ 				 	</tr>
+
+ 				 	<tr class="smallRow">
+ 				 		<td><strong>Best against: </strong> {{bestagainst}}</td>
+ 				 	</tr>
+
+ 				 	<tr class="bigRow">
+ 				 		<td><strong>Liquipedia article: </strong><a target="_blank" href="{{wikilink}}">Click for strategy details</a></td>
+ 				 	</tr>
+
+ 				 	<tr class="bigRow">
+ 				 		<td><strong>Video: </strong> <div>{{{youtubeFrame videoLink}}}</div></td>
+ 				 	</tr>
+
+ 				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

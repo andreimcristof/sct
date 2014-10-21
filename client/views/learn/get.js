@@ -1,6 +1,7 @@
 Template.allStrategies.helpers({  
 		allStrategies: function(filter) {    
-			return Strategies.find(filter, { sort: {name: -1 }, fields : { _id:0 } });
+			//return Strategies.find(filter, { sort: {name: -1 }, fields : { _id:0 } });
+			return Strategies.find(filter, { sort: {name: -1 } });
 		},
 		allRaces: function() {
 			return Races.find();
@@ -26,9 +27,7 @@ function RenderDatatableLearn()
 {
 	var filter = GetLearnFilterFromUserSelection();
 	var strategies = Template.allStrategies.allStrategies(filter).fetch();
-
-	DrawDataTable(strategies);
-	
+	DrawDataTable(strategies);	
 }
 
 function DrawDataTable(strategies)
@@ -52,7 +51,8 @@ function DrawDataTable(strategies)
 	            "mDataProp": "bestagainst", "width": "11%"
 	        },
 	        {
-	            "mDataProp": "wikilink", "width": "15%"
+	            //"mDataProp": "wikilink", "width": "15%"
+	            "mDataProp": "_id", "width": "15%"
 	        }, 
 	        {
 	            "mDataProp": "videoLink", "width": "15%"
@@ -74,10 +74,12 @@ function learnTableRowCreated ( row, data, index )
 	var nameCell = $(row.cells[0]);
 	nameCell.addClass('learnTableNameCell');
 
-	var liquipediaCell = $(row.cells[3]);
-	var liquipediaLinkText = liquipediaCell.html();
-	var liquipediaFormatttedLink = "<div class='learnTableLiquipediaCell' wikilink='" + liquipediaLinkText + "'><a target='_blank' href='" + liquipediaLinkText + "'>Build details</a></div>";
-	liquipediaCell.html(liquipediaFormatttedLink);
+
+	var detailsCell = $(row.cells[3]);
+	var strategyId = detailsCell.html();
+	var detailsLink = "<div class='learnTableLiquipediaCell' wikilink='" + strategyId + "'><a href='" + Router.routes['strategy'].path({_id: strategyId}) + "'>Details</a></div>";
+	detailsCell.html(detailsLink);
+
 
 	var videoCell = $(row.cells[4]);
 	var videoLink = videoCell.html();

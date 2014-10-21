@@ -97,6 +97,33 @@ Handlebars.registerHelper("convertUTCDateToReadableFormatInUserTimezone", functi
 });
 
 
+Handlebars.registerHelper("youtubeFrame", function(link) {
+    
+
+    function FormatVideoLink(lnk)
+    {
+        function youtube_parser(url){
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            if (match && match[2].length == 11) {
+              return match[2];
+            } else {
+                return url;
+            }
+        }
+
+        var videoId = youtube_parser(lnk);
+        var iframeFormattedYtbLink = "http://www.youtube.com/embed/" + videoId  +  "?autoplay=1";
+        return iframeFormattedYtbLink;
+    }
+
+    var iframeVid = "<iframe width='640' height='390' src='" + FormatVideoLink(link) + "' frameborder='0' allowfullscreen='true' allowscriptaccess='true'></iframe>";
+    return iframeVid;
+});
+
+
+
+
 ImgUrlHelper = 
 {
     InitUploadValidateFile :function(element)
@@ -216,3 +243,12 @@ if ( !Date.prototype.toISOString ) {
   }() );
 }
 
+
+Utils =
+{
+    GetStrategyAnchorElement:function(strategy)
+    {
+        var href = Router.path("strategy",strategy);
+        return "<a href='"+href+"'>Link</a>";
+    }
+}
