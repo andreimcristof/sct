@@ -214,4 +214,134 @@ Playpals.insert({
 	"submitterTwitter": "Andrei",
 	"userId" : "1010100011"
 });
+
+Playpals.insert({
+	"bnetid":"Test.3400", 
+	"comment" : " ", 
+	"league" : "Master",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Zerg",
+	"server" :"North America",
+	"submitted" :  moment("2014-10-23").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3401", 
+	"comment" : " ", 
+	"league" : "Master",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Protoss",
+	"server" :"North America",
+	"submitted" :  moment("2014-10-22").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3402", 
+	"comment" : " ", 
+	"league" : "Master",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Terran",
+	"server" :"Europe",
+	"submitted" :  moment("2014-10-22").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3403", 
+	"comment" : " ", 
+	"league" : "Master",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Zerg",
+	"server" :"North America",
+	"submitted" :  moment("2014-10-12").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3404", 
+	"comment" : " ", 
+	"league" : "Diamond",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Zerg",
+	"server" :"North America",
+	"submitted" :  moment("2014-11-12").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3405", 
+	"comment" : " ", 
+	"league" : "Master",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Zerg",
+	"server" :"Europe",
+	"submitted" :  moment("2014-11-22").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3406", 
+	"comment" : " ", 
+	"league" : "Bronze",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Terran",
+	"server" :"Europe",
+	"submitted" :  moment("2014-11-20").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3407", 
+	"comment" : " ", 
+	"league" : "Diamond",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Terran",
+	"server" :"North America",
+	"submitted" :  moment("2014-11-13").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3409", 
+	"comment" : " ", 
+	"league" : "Silver",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Protoss",
+	"server" :"Europe",
+	"submitted" :  moment("2014-11-03").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
+
+Playpals.insert({
+	"bnetid":"Test.3408", 
+	"comment" : " ", 
+	"league" : "Grandmaster",
+	"profileurl" : "http://us.battle.net/sc2/en/profile/whateveryourprofileis",
+	"race" : "Protoss",
+	"server" :"Europe",
+	"submitted" :  moment("2014-11-13").utc().toDate(),
+	"submitter": "101010101011",
+	"submitterTwitter": "Andrei",
+	"userId" : "1010100011"
+});
 }
