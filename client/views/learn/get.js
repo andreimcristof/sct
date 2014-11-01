@@ -1,15 +1,20 @@
 Template.allStrategies.helpers({  
-		allStrategies: function(filter) {    
-			//return Strategies.find(filter, { sort: {name: -1 }, fields : { _id:0 } });
-			return Strategies.find(filter, { sort: {name: -1 } });
-		},
-		allRaces: function() {
-			return Races.find();
-		},
-		allBestAgainst: function() {
-			return Bestagainst.find();
-		}
+		getAllStrategies: GetAllStrategies,
+		allRaces : GetAllRaces,
+		allBestAgainst: GetAllBestAgainst
 });
+
+function GetAllStrategies(filter){
+	return Strategies.find(filter, { sort: {name: -1 } });
+}
+
+function GetAllRaces(){
+	return Races.find();
+}
+
+function GetAllBestAgainst(){
+	return Bestagainst.find();
+}
 
 Template.allStrategies.rendered = function()
 {
@@ -26,7 +31,7 @@ Template.allStrategies.destroyed= function()
 function RenderDatatableLearn()
 {
 	var filter = GetLearnFilterFromUserSelection();
-	var strategies = Template.allStrategies.allStrategies(filter).fetch();
+	var strategies = GetAllStrategies(filter).fetch();
 	DrawDataTable(strategies);	
 }
 
@@ -51,7 +56,6 @@ function DrawDataTable(strategies)
 	            "mDataProp": "bestagainst", "width": "11%"
 	        },
 	        {
-	            //"mDataProp": "wikilink", "width": "15%"
 	            "mDataProp": "_id", "width": "15%"
 	        }, 
 	        {

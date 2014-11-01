@@ -1,24 +1,32 @@
 Template.allPlaypals.helpers({  
-		allPlaypals: function(filter) {    
-			return Playpals.find(filter, {sort: {submitted: -1 }  });
-		},
 
-		ownPlaypal: function() 	{    
-			return Playpals.findOne({"submitter":Meteor.userId() });
-		},
-
-		allServers: function()	{
-			return Servers.find();
-		}, 
-
-		allLeagues: function()	{
-			return Leagues.find();
-		},
-
-		allRaces: function() {
-			return Races.find();
-		}
+		getAllPlaypals: GetAllPlaypals,
+		ownPlaypal: OwnPlaypal,
+		allServers:AllServers,
+		allLeagues: AllLeagues,
+		allRaces:AllRaces
 });
+
+function GetAllPlaypals(filter){
+	return Playpals.find(filter, {sort: {submitted: -1 }  });
+}
+
+function OwnPlaypal(){
+	return Playpals.findOne({"submitter":Meteor.userId() });
+}
+
+function AllServers(){
+	return Servers.find();
+}
+
+function AllLeagues(){
+	return Leagues.find();
+}
+
+function AllRaces(){
+	return Races.find();
+}
+
 
 Template.allPlaypals.events({  
 	 'click #btnRemoveMyPlaypalProfile' : function(e)
@@ -80,7 +88,7 @@ Template.allPlaypals.rendered = function()
 
 var ReactiveMonthTrigger;
 function ActivateReactiveTriggerOnMonthChange(){
-	ReactiveMonthTrigger = Deps.autorun(function(){
+	ReactiveMonthTrigger = Tracker.autorun(function(){
 		Playpals.find();
 		RerenderPlaypalGraphicAfterFilterChange();
 		InitializeTooltipForNodes();			
@@ -154,14 +162,15 @@ function RerenderPlaypalGraphicAfterFilterChange()
 	{
 		var filter = GetCumulatedFilterFromUserSelection();
 		var selectedDate = $('#playpalMonthSelector').datepicker()[0];
-		var data = Template.allPlaypals.allPlaypals(filter).fetch();
+		var data = GetAllPlaypals(filter).fetch();
+
 		
 		if(typeof selectedDate !== "undefined")
 		{
 			var pDate = new Date(selectedDate.value);
 			var thisMonth = pDate.getMonth();
 			var thisYear = pDate.getFullYear();
-			var ownPlaypal = Template.allPlaypals.ownPlaypal();
+			var ownPlaypal = OwnPlaypal();
 			if(typeof ownPlaypal !== "undefined")
 			{
 				var ownPlaypalMonth = ownPlaypal.submitted.getMonth();
@@ -169,12 +178,12 @@ function RerenderPlaypalGraphicAfterFilterChange()
 				var needsRemoval = ((thisYear !== ownPlaypalYear) || (thisYear === ownPlaypalYear &&thisMonth !== ownPlaypalMonth));
 
 				if(!needsRemoval)
-					data =  Template.allPlaypals.allPlaypals(filter).fetch();
+					data = GetAllPlaypals(filter).fetch();
 				else
 				{
 					var removeOwnFilter = {"submitter": {$not:Meteor.userId()}}; 
 					var withoutOwnPlaypalFilter = {$and: [filter, removeOwnFilter]}
-					data =  Template.allPlaypals.allPlaypals(withoutOwnPlaypalFilter).fetch();
+					data = GetAllPlaypals(withoutOwnPlaypalFilter).fetch(); 
 				}
 			}
 		}

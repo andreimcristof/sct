@@ -17,7 +17,7 @@ if (Meteor.isServer) {
 
     //prefill constants
     Strategies.remove({});
-    InsertStrategies();
+    InsertStrategies(); 
 
     Races.remove({});
     if (Races.find().count() === 0 ) { 
@@ -175,7 +175,7 @@ if (Meteor.isClient) {
   var allPlaypalsHandle;
 
   Meteor.startup(function(){
-    Deps.autorun(function(){
+    Tracker.autorun(function(){
       if(allPlaypalsHandle) 
         allPlaypalsHandle.stop();
 
