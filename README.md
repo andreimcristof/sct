@@ -10,7 +10,7 @@ Characteristics:
 - mongoDB database
 - ironrouter for routing
 - heavy use of the Meteor publish/subscribe functionality for learning purposes
-- additional external libraries like : moment.js, d3.js, imgur API, etc
+- additional external libraries like : bootstrap, moment.js, d3.js, imgur API, etc
 
 Maybe someone will find this useful / fun to go through. 
 
